@@ -1,5 +1,7 @@
 # AI_ARCHITECTURE.md
 
+# AI Platform Architecture
+
 **Project:** PetSync AI
 
 **Version:** 1.0
@@ -8,7 +10,9 @@
 
 **Status:** Approved
 
-**Owner:** AI Engineering
+**Owner:** AI Platform Engineering
+
+**Last Updated:** July 2026
 
 ---
 
@@ -16,7 +20,7 @@
 
 1. Document Information
 2. AI Philosophy
-3. AI Architecture Overview
+3. AI Platform Architecture Overview
 4. AI Design Principles
 5. AI Technology Stack
 6. AI Request Lifecycle
@@ -28,7 +32,7 @@
 12. Prompt Management
 13. Context Engineering
 14. AI Memory Architecture
-15. RAG Architecture
+15. Evidence-Based Retrieval-Augmented Generation (RAG)
 16. Knowledge Management
 17. Embedding Architecture
 18. Tool Calling Architecture
@@ -36,18 +40,29 @@
 20. AI Agents
 21. Agent Orchestration
 22. Multi-Agent System
-23. MCP Integration (Model Context Protocol)
-24. ADK Integration (Agent Development Kit)
+23. Model Context Protocol (MCP)
+24. Agent Development Kit (ADK)
 25. AI Workflows
 26. AI Safety & Guardrails
-27. AI Security
-28. AI Cost Management
-29. AI Observability
-30. AI Evaluation Framework
-31. Human-in-the-Loop
-32. AI Performance Optimization
-33. Future AI Expansion
-34. AI Architecture Summary
+27. Medical Guidance Policy
+28. AI Medical Response Policy
+29. AI Security
+30. Emergency Detection Engine
+31. Confidence Framework
+32. Source Attribution Framework
+33. AI Cost Management
+34. AI Observability
+35. AI Evaluation Framework
+36. Human-in-the-Loop
+37. AI Performance Optimization
+38. AI Explainability
+39. Hallucination Mitigation
+40. Knowledge Freshness Validation
+41. Response Validation
+42. AI Governance
+43. Future AI Expansion
+44. Future Clinical Review Layer
+45. AI Architecture Summary
 
 ---
 
@@ -55,46 +70,73 @@
 
 ## Purpose
 
-This document defines the complete Artificial Intelligence architecture for **PetSync AI Version 1.0**.
+This document defines the complete AI Platform Architecture for PetSync AI Version 1.0.
 
-Unlike traditional software architecture, AI systems require dedicated infrastructure for prompt orchestration, context engineering, memory management, retrieval, provider abstraction, agent execution, safety enforcement, and continuous evaluation.
+The architecture describes how Artificial Intelligence capabilities are designed, orchestrated, governed, secured, and monitored across the platform.
 
-This document establishes the architectural blueprint for building a scalable, provider-independent, enterprise-grade AI platform capable of supporting current and future intelligent capabilities.
+Rather than implementing a single chatbot, PetSync AI provides a modular AI platform consisting of:
 
-The architecture ensures that AI remains a core platform capability rather than a collection of isolated API integrations.
+- AI Gateway
+- Multi-Provider AI Routing
+- Context Engineering
+- Prompt Engineering
+- Memory Management
+- Evidence-Based Retrieval-Augmented Generation (RAG)
+- AI Agents
+- Tool Calling
+- Workflow Orchestration
+- AI Governance
+- AI Observability
+- AI Safety Controls
+
+The platform is designed to deliver trustworthy, explainable, and evidence-based educational assistance for pet owners while maintaining clear medical safety boundaries.
 
 ---
 
 ## Scope
 
-This document defines:
+This document covers:
 
-- AI platform architecture
-- AI Gateway
-- Multi-provider infrastructure
-- Provider routing
-- Model registry
-- Capability registry
-- Prompt management
-- Context engineering
-- Memory architecture
-- Retrieval-Augmented Generation (RAG)
-- AI agents
-- Tool execution
-- AI security
-- AI observability
-- AI cost optimization
-- AI evaluation
+### AI Platform
 
-This document does **not** define:
+- AI Platform Architecture
+- AI Infrastructure
+- AI Services
+- AI Components
+- AI Orchestration
 
-- REST API contracts
-- Database schema
-- Business domain implementation
-- Frontend implementation
-- Infrastructure deployment
+### Intelligence Layer
 
-These concerns are documented separately.
+- Prompt Engineering
+- Context Engineering
+- Memory Architecture
+- Knowledge Retrieval
+- Multi-Agent Systems
+- AI Decision Flows
+
+### Governance Layer
+
+- AI Safety
+- AI Security
+- AI Evaluation
+- AI Monitoring
+- Cost Management
+- Responsible AI
+
+---
+
+## Out of Scope
+
+The following topics are documented separately:
+
+- Database Architecture
+- REST API Design
+- Infrastructure Architecture
+- Security Architecture
+- Authentication & Authorization
+- Frontend Architecture
+- CI/CD Pipeline
+- Deployment Strategy
 
 ---
 
@@ -104,195 +146,261 @@ This document is intended for:
 
 - AI Engineers
 - Backend Engineers
-- Solution Architects
-- Machine Learning Engineers
-- DevOps Engineers
+- Software Engineers
 - Platform Engineers
-- Technical Product Managers
+- DevOps Engineers
+- Security Engineers
+- Technical Architects
+- Engineering Managers
+- Product Engineers
 
 ---
 
-## Objectives
+## Architecture Objectives
 
-The AI platform should provide:
+The AI platform is designed to achieve the following objectives:
 
-- Provider independence
-- Enterprise scalability
-- Modular architecture
-- Secure AI execution
-- Cost optimization
-- High observability
-- Safe AI interactions
-- Future compatibility
-- Excellent developer experience
+- Provider Independence
+- Reliable Educational Assistance
+- Evidence-Based Responses
+- High Availability
+- Scalability
+- Explainability
+- Security
+- Safety
+- Observability
+- Cost Efficiency
+- Extensibility
+- Regulatory Readiness
 
 ---
 
 # 2. AI Philosophy
 
+## Vision
+
+PetSync AI is designed as an **Educational AI Pet Health Copilot**.
+
+Its purpose is to help pet owners better understand veterinary information, organize health records, monitor long-term wellness, and make more informed conversations with licensed veterinarians.
+
+The platform augments veterinary care through education and organization—it does not replace professional clinical expertise.
+
+---
+
+## Mission
+
+Our mission is to make pet healthcare information easier to understand by transforming complex veterinary terminology, laboratory reports, vaccination records, medications, and health histories into clear, evidence-based educational guidance.
+
+PetSync AI empowers pet owners to become better informed while reinforcing that diagnosis and treatment decisions belong to licensed veterinary professionals.
+
+---
+
+## Core Principles
+
+The AI platform is built on the following principles:
+
+### 1. Education First
+
+The primary objective is to educate users, not diagnose or treat medical conditions.
+
+---
+
+### 2. Evidence Before Generation
+
+Whenever possible, responses should be grounded in retrieved evidence from trusted veterinary resources rather than relying solely on a language model's internal knowledge.
+
+---
+
+### 3. Explainability
+
+Users should understand:
+
+- What information was used
+- Why the response was generated
+- How confident the system is
+- When professional veterinary advice is recommended
+
+---
+
+### 4. Safety by Default
+
+When uncertainty exists, the platform favors conservative educational guidance over speculative responses.
+
+---
+
+### 5. Human Collaboration
+
+Licensed veterinarians remain the authoritative decision-makers for diagnosis, treatment, medication, surgery, and emergency care.
+
+AI exists to support—not replace—the veterinary care process.
+
+---
+
+# Medical Guidance Policy
+
+## Educational AI Positioning
+
+PetSync AI is an educational platform.
+
+It may assist users by:
+
+- Explaining veterinary terminology
+- Simplifying laboratory reports
+- Summarizing medical records
+- Tracking vaccinations
+- Tracking medications
+- Monitoring wellness history
+- Providing evidence-based educational information
+- Helping users prepare informed questions for their veterinarian
+
+---
+
+## Medical Limitations
+
+PetSync AI shall **not**:
+
+- Diagnose diseases
+- Confirm medical conditions
+- Prescribe medications
+- Recommend medication dosages
+- Recommend starting, stopping, or changing medications
+- Replace physical examinations
+- Replace laboratory diagnostics
+- Replace emergency veterinary services
+- Replace a licensed veterinarian's clinical judgment
+
+These restrictions are enforced as architectural requirements and implemented through AI safety controls.
+
+---
+
+## Medical Disclaimer Policy
+
+All health-related information generated by PetSync AI is provided solely for educational and informational purposes.
+
+The platform is designed to improve understanding of veterinary information and support productive conversations with veterinary professionals.
+
+PetSync AI does not provide medical diagnoses, prescribe treatments, or recommend medication changes.
+
+Users should always consult a licensed veterinarian for:
+
+- Medical diagnosis
+- Treatment planning
+- Medication recommendations
+- Medication dosage adjustments
+- Interpretation of clinical findings
+- Surgical decisions
+- Emergency medical care
+
+---
+
+## AI Response Requirement
+
+Every AI-generated response involving pet health shall include an appropriate context-aware medical safety notice.
+
+Examples include:
+
+- Educational interpretation notice
+- Medication safety notice
+- Diagnostic limitation notice
+- Emergency escalation notice
+
+The platform shall never present educational information as confirmed medical advice.
+
+---
+
+## Standard Medical Disclaimer
+
+Every health-related response should conclude with a disclaimer similar to:
+
+> **Educational Notice:** PetSync AI provides educational information only. It does not diagnose medical conditions, prescribe treatments, or recommend medication changes. Always consult a licensed veterinarian for diagnosis, treatment decisions, medication recommendations, and emergency medical care.
+
+---
+
+# 3. AI Platform Architecture Overview
+
 ## Overview
 
-Artificial Intelligence is treated as a **platform capability**, not an external service.
+PetSync AI is implemented as a layered AI platform rather than a standalone chatbot.
 
-Business domains never communicate directly with Large Language Models (LLMs).
+Each architectural layer has clearly defined responsibilities, enabling scalability, maintainability, provider independence, and future extensibility.
 
-Instead, every AI interaction flows through standardized architectural layers responsible for orchestration, routing, memory, retrieval, validation, and monitoring.
-
-This approach enables the platform to evolve independently of any individual AI provider.
+This separation allows individual AI components to evolve independently without affecting the overall platform.
 
 ---
-
-## Core Philosophy
-
-### AI as Infrastructure
-
-AI is considered foundational infrastructure similar to databases, authentication, or messaging systems.
-
-Business services request intelligent capabilities without knowledge of provider-specific implementations.
-
----
-
-### Provider Independence
-
-The application should never depend on a single AI vendor.
-
-Business logic communicates only with the AI Gateway.
-
-The gateway determines:
-
-- Provider
-- Model
-- Prompt strategy
-- Context strategy
-- Retrieval strategy
-
-This allows providers to be replaced without changing business services.
-
----
-
-### Capability-Driven AI
-
-Business services request capabilities rather than models.
-
-Example:
-
-```text
-Generate Health Summary
-
-↓
-
-AI Gateway
-
-↓
-
-Capability Registry
-
-↓
-
-Provider Router
-
-↓
-
-Selected Model
-
-↓
-
-Response
-```
-
-The business service never specifies whether GPT-5, Claude, Gemini, or another model should be used.
-
----
-
-### AI as an Event-Driven Platform
-
-AI operations may execute synchronously or asynchronously.
-
-Examples:
-
-Synchronous
-
-- AI Chat
-- AI Search
-- AI Recommendations
-
-Asynchronous
-
-- Document Analysis
-- OCR Enhancement
-- Medical Record Processing
-- Timeline Summaries
-- Embedding Generation
-
----
-
-### Responsible AI
-
-Every AI response must satisfy:
-
-- Accuracy
-- Explainability
-- Privacy
-- Security
-- Auditability
-- Cost Awareness
-- Human Oversight
-
----
-
-# 3. AI Architecture Overview
 
 ## High-Level Architecture
 
-The AI platform consists of multiple independent layers.
-
 ```text
-                      Client Applications
-                               │
-                               ▼
-                         AI Gateway
-                               │
-        ┌──────────────────────┼──────────────────────┐
-        │                      │                      │
-        ▼                      ▼                      ▼
- Provider Router        Capability Registry     Prompt Manager
-        │                      │                      │
-        └──────────────┬───────┴──────────────┬───────┘
-                       ▼                      ▼
-                Context Builder        Memory Manager
-                       │                      │
-                       └──────────────┬───────┘
-                                      ▼
-                                RAG Engine
-                                      │
-                                      ▼
-                             Knowledge Layer
-                                      │
-                                      ▼
-                             Tool Calling Engine
-                                      │
-                                      ▼
-                              Provider Adapter
-                                      │
-                                      ▼
-                            Large Language Model
-                                      │
-                                      ▼
-                             Response Validator
-                                      │
-                                      ▼
-                             Streaming Response
+                     User
+                      │
+                      ▼
+               Web / Mobile App
+                      │
+                      ▼
+                 API Gateway
+                      │
+                      ▼
+                  AI Gateway
+                      │
+     ┌────────────────┼─────────────────┐
+     │                │                 │
+     ▼                ▼                 ▼
+Capability      Context Builder   Prompt Manager
+Registry
+     │                │                 │
+     └────────────────┼─────────────────┘
+                      ▼
+               Memory Manager
+                      │
+                      ▼
+        Evidence-Based RAG Engine
+                      │
+                      ▼
+            Veterinary Knowledge Layer
+                      │
+                      ▼
+             Tool Execution Engine
+                      │
+                      ▼
+              Provider Router
+                      │
+      ┌───────────────┼────────────────────┐
+      │               │                    │
+      ▼               ▼                    ▼
+   OpenAI        Anthropic            Gemini
+      │
+      ▼
+ Response Validation
+      │
+      ▼
+ Medical Safety Validation
+      │
+      ▼
+ Confidence Scoring
+      │
+      ▼
+ Emergency Detection
+      │
+      ▼
+ Educational Response Generator
+      │
+      ▼
+        User Response
 ```
-
-Each component has a single responsibility, enabling independent evolution and testing.
 
 ---
 
 ## Architectural Layers
 
-### AI Gateway Layer
+### Experience Layer
 
-Single entry point for all AI interactions.
+Responsible for:
+
+- User interaction
+- Conversations
+- Chat interface
+- File uploads
+- Streaming responses
 
 ---
 
@@ -300,10 +408,12 @@ Single entry point for all AI interactions.
 
 Responsible for:
 
-- Provider routing
-- Capability resolution
-- Prompt orchestration
-- Context construction
+- AI Gateway
+- Context Engineering
+- Prompt Engineering
+- Memory Retrieval
+- Agent Selection
+- AI Orchestration
 
 ---
 
@@ -311,11 +421,12 @@ Responsible for:
 
 Responsible for:
 
-- AI memory
-- Retrieval
-- Embeddings
-- Semantic search
-- Knowledge management
+- Veterinary knowledge base
+- Medical records
+- Vaccination history
+- Medication history
+- Educational references
+- Trusted guidance sources
 
 ---
 
@@ -323,10 +434,11 @@ Responsible for:
 
 Responsible for:
 
-- Tool execution
-- Function calling
-- Agent execution
-- Model communication
+- Tool Calling
+- Function Execution
+- AI Providers
+- Provider Routing
+- Workflow Orchestration
 
 ---
 
@@ -334,146 +446,210 @@ Responsible for:
 
 Responsible for:
 
-- Validation
-- Safety
-- Monitoring
-- Cost tracking
-- Observability
-
----
+- AI Security
+- AI Safety
+- Medical Safety Controls
+- Audit Logging
+- Cost Monitoring
+- AI Evaluation
+- AI Observability
+- Responsible AI Governance
 
 # 4. AI Design Principles
 
-Every AI component follows consistent architectural principles.
+Every AI component within PetSync AI must follow consistent engineering principles to ensure reliability, scalability, maintainability, safety, and provider independence.
 
 ---
 
-## Principle 1 — Provider Agnostic
+## Provider Agnostic
 
-Business logic never communicates directly with providers.
+Business services shall never communicate directly with an AI model.
 
-Every provider implements the same internal interface.
+All AI requests must flow through the AI Gateway and Provider Router.
 
----
+This enables:
 
-## Principle 2 — Modular Architecture
-
-Every responsibility is isolated.
-
-Examples:
-
-- Routing
-- Memory
-- Prompting
-- Retrieval
-- Tool execution
-
-Each module can evolve independently.
+- Vendor independence
+- Easier provider replacement
+- Cost optimization
+- Automatic failover
+- Capability-based routing
 
 ---
 
-## Principle 3 — Capability-Based Execution
+## Capability Driven
 
-Applications request capabilities instead of models.
+AI models are selected based on capabilities rather than vendor names.
 
-Examples:
+Example:
 
-- Summarize Medical History
-- Analyze Document
-- Search Timeline
-- Recommend Medication Reminder
+Capability
 
-The platform determines the optimal execution strategy.
+↓
+
+Medical Record Interpretation
+
+↓
+
+Provider Router
+
+↓
+
+OpenAI
+
+Anthropic
+
+Gemini
+
+Future Models
+
+This ensures business logic remains independent of specific providers.
 
 ---
 
-## Principle 4 — Context Before Intelligence
+## Context First
 
-High-quality context is more valuable than larger models.
+The quality of retrieved context is more important than selecting the largest language model.
 
-Every AI request should prioritize:
+Every response should prioritize:
 
-- Relevant memory
-- User context
-- Retrieved knowledge
-- Tool outputs
+- Pet profile
+- Medical history
+- Vaccination records
+- Medication records
+- Uploaded documents
+- Conversation history
+- Trusted veterinary references
 
-before interacting with an LLM.
+before invoking an AI model.
 
 ---
 
-## Principle 5 — Safety by Design
+## Evidence Before Generation
 
-Every AI interaction includes:
+Whenever possible, AI responses should be grounded using retrieved evidence instead of relying solely on model memory.
+
+Evidence sources include:
+
+- Veterinary guidelines
+- Peer-reviewed educational resources
+- Internal knowledge base
+- User-uploaded veterinary documents
+- Vaccination records
+- Medication history
+
+This approach reduces hallucinations and improves explainability.
+
+---
+
+## Safety by Design
+
+Medical safety is enforced throughout the AI pipeline rather than only after response generation.
+
+Safety checks include:
 
 - Prompt validation
 - Context validation
-- Output validation
-- Safety checks
-- Audit logging
+- Response validation
+- Medical safety validation
+- Emergency detection
+- Confidence scoring
 
 ---
 
-## Principle 6 — Continuous Evaluation
+## Explainability
 
-Every AI interaction produces measurable signals.
+The platform should be able to explain:
 
-Examples:
+- Why a response was generated
+- Which evidence was used
+- Confidence level
+- Supporting references
+- Whether veterinary consultation is recommended
 
-- Latency
-- Cost
-- Quality
-- User feedback
-- Hallucination rate
-- Tool success
+---
+
+## Modular Architecture
+
+Each subsystem should evolve independently.
+
+Examples include:
+
+- Prompt Engine
+- Context Engine
+- Memory Manager
+- Provider Router
+- Tool Registry
+- Agent Registry
+- Evaluation Engine
 
 ---
 
 # 5. AI Technology Stack
 
-## Core Platform
-
-- NestJS
-- TypeScript
-- LangGraph (future orchestration)
-- LangChain (selective use)
-- OpenAI SDK
-- Anthropic SDK
-- Google GenAI SDK
-
----
-
 ## AI Providers
 
-Commercial Providers
+### Primary Providers
 
 - OpenAI
 - Anthropic
 - Google Gemini
+
+---
+
+### Secondary Providers
+
 - Groq
-- Mistral
+- Mistral AI
 - Cohere
-- Azure OpenAI
-- AWS Bedrock
 - Together AI
 - Fireworks AI
 
 ---
 
-Local Providers
+### Enterprise Providers
 
-- Ollama
-- LM Studio
-- llama.cpp
+- Azure OpenAI
+- AWS Bedrock
 
 ---
 
-## Memory & Retrieval
+### Future Support
+
+- Ollama
+- llama.cpp
+- LM Studio
+- Enterprise-hosted open-source models
+
+---
+
+## Core AI Components
+
+The platform consists of:
+
+- AI Gateway
+- Provider Router
+- Prompt Registry
+- Capability Registry
+- Model Registry
+- Context Engine
+- Memory Manager
+- RAG Engine
+- Tool Registry
+- Agent Registry
+- Evaluation Engine
+- Safety Engine
+- Response Validator
+
+---
+
+## Memory Technologies
+
+Current
 
 - PostgreSQL
-- pgvector
 - Redis
-- Object Storage
+- pgvector
 
 Future
 
@@ -483,103 +659,138 @@ Future
 
 ---
 
-## AI Infrastructure
-
-- Model Registry
-- Provider Router
-- Prompt Registry
-- Capability Registry
-- Tool Registry
-- Agent Registry
-
----
-
 ## AI Protocols
 
-Current
+Supported
 
 - HTTPS
-- REST
+- REST API
 - Server-Sent Events (SSE)
 
 Future
 
-- Model Context Protocol (MCP)
-- Agent Development Kit (ADK)
-- gRPC
+- MCP (Model Context Protocol)
+- ADK (Agent Development Kit)
+- A2A (Agent-to-Agent Communication)
 
 ---
 
 # 6. AI Request Lifecycle
 
-Every AI request follows the same processing pipeline.
+Every AI request follows a standardized execution pipeline to ensure:
 
-```text
-Client
-    │
-    ▼
-AI Endpoint
-    │
-    ▼
-Authentication
-    │
-    ▼
-Authorization
-    │
-    ▼
-AI Gateway
-    │
-    ▼
-Capability Resolution
-    │
-    ▼
-Provider Routing
-    │
-    ▼
-Prompt Construction
-    │
-    ▼
-Context Building
-    │
-    ▼
-Memory Retrieval
-    │
-    ▼
-Knowledge Retrieval
-    │
-    ▼
-Tool Planning
-    │
-    ▼
-Provider Execution
-    │
-    ▼
-Response Validation
-    │
-    ▼
-Streaming Response
-```
-
-Long-running AI tasks continue asynchronously after acknowledgement when appropriate.
+- Security
+- Explainability
+- Medical safety
+- Evidence grounding
+- Reliable educational responses
 
 ---
 
-## AI Processing Pipeline
+## Request Flow
 
-Each AI request passes through multiple specialized stages.
+```text
+User Request
+      │
+      ▼
+Authentication
+      │
+      ▼
+Authorization
+      │
+      ▼
+AI Gateway
+      │
+      ▼
+Capability Resolution
+      │
+      ▼
+Context Engineering
+      │
+      ▼
+Memory Retrieval
+      │
+      ▼
+Evidence Retrieval (RAG)
+      │
+      ▼
+Prompt Assembly
+      │
+      ▼
+Provider Routing
+      │
+      ▼
+LLM Execution
+      │
+      ▼
+Response Validation
+      │
+      ▼
+Medical Safety Validation
+      │
+      ▼
+Confidence Evaluation
+      │
+      ▼
+Emergency Detection
+      │
+      ▼
+Disclaimer Injection
+      │
+      ▼
+Educational Response Generation
+      │
+      ▼
+Streaming Response
+```
 
-1. Request Validation
-2. Capability Resolution
-3. Context Assembly
-4. Memory Retrieval
-5. Knowledge Retrieval
-6. Prompt Construction
-7. Provider Selection
-8. Model Execution
-9. Output Validation
-10. Response Delivery
+---
 
-This layered approach ensures consistent behavior across all AI capabilities.
+## Medical Safety Validation
+
+Before any AI response is delivered, the platform evaluates whether the generated content violates medical safety policies.
+
+Responses are checked for prohibited behaviors such as:
+
+- Diagnosing diseases
+- Confirming medical conditions
+- Prescribing medications
+- Recommending medication dosages
+- Suggesting medication changes
+- Replacing veterinary consultation
+- Discouraging professional veterinary care
+
+If a violation is detected, the response is modified, regenerated, or blocked.
+
+---
+
+## Disclaimer Injection
+
+Health-related responses automatically include an appropriate context-aware disclaimer.
+
+Examples include:
+
+### Medication
+
+"PetSync AI provides educational information only. Consult your veterinarian before starting, stopping, or changing any medication."
+
+---
+
+### Symptoms
+
+"Symptoms may have multiple causes and cannot be diagnosed by AI. Please consult your veterinarian for an examination."
+
+---
+
+### Laboratory Reports
+
+"This interpretation is educational and should be reviewed with your veterinarian in the context of your pet's medical history."
+
+---
+
+### Emergency Situations
+
+"Your description may indicate a potentially urgent situation. Contact your veterinarian or the nearest emergency veterinary hospital immediately."
 
 ---
 
@@ -587,66 +798,61 @@ This layered approach ensures consistent behavior across all AI capabilities.
 
 ## Overview
 
-The AI Gateway is the central orchestration layer of the PetSync AI platform.
+The AI Gateway is the central orchestration layer for every AI capability within PetSync AI.
 
-Every AI interaction flows through the gateway.
+It abstracts business services from AI providers and coordinates context, prompts, memory, tools, governance, and safety.
 
-No application component communicates directly with an AI provider.
+No application service communicates directly with an LLM.
 
 ---
 
 ## Responsibilities
 
-The gateway is responsible for:
+The AI Gateway is responsible for:
 
-- Request orchestration
-- Provider routing
+- AI request orchestration
 - Capability resolution
-- Prompt orchestration
 - Context assembly
-- Memory injection
-- RAG execution
+- Prompt construction
+- Memory retrieval
+- Evidence retrieval
 - Tool execution
-- Streaming
+- Provider routing
+- Medical safety validation
+- Response validation
 - Cost tracking
 - Observability
-- Failover
+- Audit logging
 
 ---
 
-## Gateway Architecture
+## AI Gateway Architecture
 
 ```text
-Client
-    │
-    ▼
-AI Gateway
-    │
-    ├── Authentication
-    ├── Authorization
-    ├── Capability Resolver
-    ├── Provider Router
-    ├── Prompt Manager
-    ├── Context Builder
-    ├── Memory Manager
-    ├── RAG Engine
-    ├── Tool Engine
-    ├── Validator
-    └── Stream Manager
+Application
+      │
+      ▼
+ AI Gateway
+      │
+ ┌────┼───────────────────────────────────────┐
+ │    │      │      │       │       │         │
+ ▼    ▼      ▼      ▼       ▼       ▼         ▼
+Context Prompt Memory RAG  Tools Provider  Safety
+Builder Engine Manager Engine Router Engine
 ```
 
 ---
 
-## Benefits
+## Gateway Benefits
 
-The AI Gateway provides:
-
-- Centralized governance
+- Centralized orchestration
+- Consistent AI behavior
 - Provider independence
-- Consistent security
-- Unified monitoring
-- Simplified development
-- Future extensibility
+- Easier maintenance
+- Simplified expansion
+- Stronger governance
+- Improved observability
+- Built-in medical safety enforcement
 
 ---
 
@@ -654,140 +860,155 @@ The AI Gateway provides:
 
 ## Overview
 
-PetSync AI is designed as a true multi-provider AI platform.
+PetSync AI supports multiple AI providers through a unified abstraction layer.
 
-Multiple providers can operate simultaneously.
+Business services never communicate directly with provider SDKs.
 
-Business services remain unaware of provider-specific implementations.
-
----
-
-## Supported Providers
-
-Commercial
-
-- OpenAI
-- Anthropic
-- Google Gemini
-- Groq
-- Mistral
-- Cohere
-- Azure OpenAI
-- AWS Bedrock
-- Together AI
-- Fireworks AI
+All provider interactions occur through standardized interfaces.
 
 ---
 
-Local
+## Why Multiple Providers?
 
-- Ollama
-- LM Studio
-- llama.cpp
+Different models excel at different tasks.
 
----
+Examples include:
 
-Future
+| Capability | Preferred Provider |
+|------------|--------------------|
+| General conversation | OpenAI |
+| Long document understanding | Anthropic |
+| Multimodal image analysis | Gemini |
+| Fast inference | Groq |
+| Cost-sensitive workloads | Mistral / Together AI |
 
-New providers can be integrated by implementing a Provider Adapter.
-
-No business logic changes are required.
-
----
-
-## Provider Architecture
-
-```text
-AI Gateway
-      │
-      ▼
-Provider Router
-      │
- ┌────┼────┬────┬────┐
- │    │    │    │    │
- ▼    ▼    ▼    ▼    ▼
-OpenAI Claude Gemini Groq Ollama
-      │
-      ▼
-Unified Provider Interface
-```
-
-Every provider implements the same internal contract.
+The Provider Router selects the most appropriate model based on capability, performance, availability, latency, and cost.
 
 ---
 
-## Multi-Provider Benefits
+## Failover Strategy
 
-- High availability
-- Lower cost
-- Reduced vendor lock-in
-- Better latency
-- Specialized capabilities
-- Automatic failover
-- Geographic flexibility
+If a provider becomes unavailable:
+
+1. Detect failure
+2. Retry according to policy
+3. Route to a compatible provider
+4. Continue processing
+5. Log the event for monitoring and analysis
+
+This ensures high availability and resilience.
 
 ---
+
+## Benefits
+
+A multi-provider architecture provides:
+
+- Vendor independence
+- Higher availability
+- Cost optimization
+- Capability specialization
+- Simplified experimentation
+- Future extensibility
+- Reduced operational risk
+- Better performance tuning
+
+---
+
+## Architectural Principles
+
+The multi-provider platform is designed around the following principles:
+
+- Business logic remains provider-independent.
+- AI capabilities are decoupled from specific models.
+- Routing decisions are centralized.
+- Safety policies apply consistently across all providers.
+- Educational guidance takes precedence over speculative generation.
+- Health-related responses must comply with the Medical Guidance Policy and include appropriate context-aware disclaimers encouraging users to consult a licensed veterinarian for diagnosis, treatment, medication recommendations, and emergency care.
 
 # 9. Provider Router
 
 ## Overview
 
-The Provider Router determines which AI provider and model should execute a request.
+The Provider Router is responsible for selecting the most appropriate AI model for every request.
 
-Applications request capabilities rather than selecting providers.
+Instead of hardcoding a provider, PetSync AI evaluates the request and dynamically routes it based on capability, latency, cost, availability, safety requirements, and provider health.
+
+This architecture ensures provider independence while optimizing response quality and operational efficiency.
 
 ---
 
-## Routing Inputs
+## Responsibilities
 
-Routing decisions consider:
+The Provider Router is responsible for:
 
-- Capability
-- Model quality
-- Cost
-- Latency
-- Availability
-- Context length
-- Streaming support
-- Tool support
-- Organization policy
+- Selecting the optimal AI provider
+- Selecting the appropriate AI model
+- Managing provider failover
+- Enforcing routing policies
+- Optimizing latency
+- Optimizing operational cost
+- Monitoring provider health
+- Supporting A/B model evaluation
 
 ---
 
 ## Routing Workflow
 
 ```text
-Capability Request
-        │
-        ▼
-Capability Registry
-        │
-        ▼
-Provider Router
-        │
-        ▼
-Candidate Models
-        │
-        ▼
-Ranking Engine
-        │
-        ▼
-Selected Provider
+AI Request
+      │
+      ▼
+Capability Detection
+      │
+      ▼
+Routing Policy Evaluation
+      │
+      ▼
+Provider Health Check
+      │
+      ▼
+Model Selection
+      │
+      ▼
+Provider Execution
+      │
+      ▼
+Response
 ```
 
 ---
 
-## Failover
+## Routing Factors
 
-If a provider becomes unavailable:
+The router evaluates:
 
-1. Detect failure
-2. Select alternative provider
-3. Retry request
-4. Preserve request context
-5. Continue execution
+- Capability
+- Model availability
+- Provider health
+- Latency
+- Cost
+- Token limits
+- Context window
+- Image support
+- Function calling support
+- Tool calling support
+- Streaming support
+- Regional availability
 
-Business services remain unaware of provider changes.
+---
+
+## Example Routing Rules
+
+| Capability | Preferred Provider |
+|------------|--------------------|
+| General conversation | OpenAI |
+| Medical record explanation | Anthropic |
+| Image interpretation | Gemini |
+| Fast responses | Groq |
+| Low-cost requests | Mistral |
+
+Routing rules are configurable and may evolve without requiring application code changes.
 
 ---
 
@@ -795,66 +1016,33 @@ Business services remain unaware of provider changes.
 
 ## Overview
 
-The Model Registry maintains metadata for every supported model.
+The Model Registry maintains metadata about every supported AI model.
 
-It serves as the authoritative source for model capabilities and operational characteristics.
+Rather than embedding model names in business logic, the registry provides a centralized catalog of available models and their capabilities.
 
 ---
 
-## Registry Metadata
+## Registry Responsibilities
 
-Each model includes:
-
-- Provider
-- Model Name
-- Version
-- Context Window
-- Maximum Tokens
-- Input Cost
-- Output Cost
-- Streaming Support
-- Tool Calling Support
-- Multimodal Support
-- Availability Status
-- Performance Rating
+- Model discovery
+- Version tracking
+- Capability mapping
+- Context window metadata
+- Pricing metadata
+- Deprecation management
+- Default model selection
 
 ---
 
 ## Example Registry
 
-```text
-Provider
+| Model | Provider | Context | Vision | Tools | Streaming |
+|--------|----------|--------:|:------:|:-----:|:---------:|
+| GPT-5 | OpenAI | 200K | ✓ | ✓ | ✓ |
+| Claude | Anthropic | 200K+ | ✓ | ✓ | ✓ |
+| Gemini | Google | Large | ✓ | ✓ | ✓ |
 
-↓
-
-Model
-
-↓
-
-Capabilities
-
-↓
-
-Limits
-
-↓
-
-Pricing
-
-↓
-
-Operational Status
-```
-
----
-
-## Registry Benefits
-
-- Centralized management
-- Dynamic model updates
-- Cost optimization
-- Intelligent routing
-- Capability discovery
+The registry is designed to be extensible as new models become available.
 
 ---
 
@@ -862,78 +1050,35 @@ Operational Status
 
 ## Overview
 
-The Capability Registry maps business capabilities to AI execution strategies.
+The Capability Registry maps business capabilities to AI workflows.
 
-Applications request capabilities instead of specific models.
+Business services request a capability rather than a specific model.
 
 ---
 
 ## Example Capabilities
 
-Health
-
-- Health Summary
-- Medical Analysis
-- Symptom Explanation
-
-Pets
-
-- Pet Insights
+- Health Education
+- Medical Record Interpretation
+- Laboratory Report Explanation
+- Vaccination Guidance
+- Medication Information
+- Nutrition Education
 - Breed Information
-- Nutrition Advice
-
-Documents
-
-- OCR Enhancement
-- Structured Extraction
-- Medical Record Summary
-
-Search
-
-- Semantic Search
-- Question Answering
-- Timeline Search
-
-General
-
-- Chat
+- Preventive Care
+- Document Summarization
 - Translation
-- Summarization
-- Classification
-
----
-
-## Capability Flow
-
-```text
-Business Request
-
-↓
-
-Capability Registry
-
-↓
-
-Execution Strategy
-
-↓
-
-Provider Router
-
-↓
-
-Selected Model
-```
+- Image Understanding
 
 ---
 
 ## Benefits
 
-- Business abstraction
-- Easier maintenance
 - Provider independence
+- Easier maintenance
 - Centralized governance
-- Future extensibility
+- Consistent AI behavior
+- Simplified feature expansion
 
 ---
 
@@ -941,7 +1086,7 @@ Selected Model
 
 ## Overview
 
-Prompt Management centralizes the creation, versioning, testing, and governance of all AI prompts.
+Prompt Management centralizes the creation, storage, versioning, testing, and governance of AI prompts.
 
 Prompts are treated as version-controlled assets rather than hardcoded strings.
 
@@ -951,276 +1096,111 @@ Prompts are treated as version-controlled assets rather than hardcoded strings.
 
 Every prompt consists of:
 
-- System Prompt
-- Developer Instructions
-- User Input
-- Context
-- Memory
-- Retrieved Knowledge
-- Tool Results
-- Output Constraints
+- System Instructions
+- Capability Instructions
+- User Context
+- Retrieved Evidence
+- Safety Policies
+- Output Format
+- Medical Disclaimer Rules
 
 ---
 
-## Prompt Assembly
+## Prompt Lifecycle
 
 ```text
-System Prompt
-        │
-        ▼
-Developer Rules
-        │
-        ▼
-Business Context
-        │
-        ▼
-Memory
-        │
-        ▼
-Retrieved Knowledge
-        │
-        ▼
-Tool Results
-        │
-        ▼
-User Request
-        │
-        ▼
-Final Prompt
+Prompt Draft
+      │
+      ▼
+Review
+      │
+      ▼
+Testing
+      │
+      ▼
+Approval
+      │
+      ▼
+Versioning
+      │
+      ▼
+Production
 ```
 
 ---
 
-## Prompt Versioning
+## Prompt Engineering Principles
 
-Every prompt is versioned.
+Prompts should:
 
-Each version records:
-
-- Version Number
-- Purpose
-- Owner
-- Change History
-- Supported Models
-- Evaluation Results
-- Rollback Version
+- Be deterministic where possible
+- Prioritize evidence over assumptions
+- Avoid unsupported medical claims
+- Encourage explainability
+- Produce structured outputs
+- Respect safety policies
 
 ---
-
-## Prompt Templates
-
-Prompt templates are reusable across capabilities.
-
-Examples:
-
-- Health Summary Template
-- Vaccination Reminder Template
-- Document Analysis Template
-- Timeline Summary Template
-- Search Assistant Template
-- Pet Care Recommendation Template
-
----
-
-## Prompt Governance
-
-All prompts follow governance standards.
-
-Requirements include:
-
-- Clear objectives
-- Structured instructions
-- Safety constraints
-- Output formatting
-- Evaluation criteria
-- Version control
-- Approval workflow
-
-Prompt changes should be reviewed, tested, and evaluated before deployment.
-
----
-
-**End of Part 1**
-
-**Next (Part 2)**
-
-Part 2 will cover the intelligence layer of the platform:
-
-- Context Engineering
-- AI Memory Architecture
-- RAG Architecture
-- Knowledge Management
-- Embedding Architecture
-- Tool Calling Architecture
-- Function Calling
-- AI Agents
-- Agent Orchestration
-- Multi-Agent System
-- MCP (Model Context Protocol)
-
-This is where PetSync AI evolves from a chatbot into a complete AI operating platform.
 
 # 13. Context Engineering
 
 ## Overview
 
-Context Engineering is the process of constructing the optimal context for every AI request.
+Context Engineering determines what information is supplied to the AI model for each request.
 
-Instead of relying solely on user prompts, the AI platform intelligently assembles information from multiple sources to maximize response quality.
-
-The objective is to provide the model with the most relevant information while minimizing unnecessary tokens.
-
----
-
-## Context Philosophy
-
-PetSync AI treats context as a strategic asset.
-
-Every response should be built from:
-
-- User Intent
-- Business Context
-- Workspace Context
-- Pet Context
-- Conversation Memory
-- Long-Term Memory
-- Retrieved Knowledge
-- Tool Results
-- System Instructions
-
-High-quality context consistently produces better results than simply using larger models.
-
----
-
-## Context Architecture
-
-```text
-User Request
-      │
-      ▼
-Intent Analysis
-      │
-      ▼
-Context Builder
-      │
-      ├── Workspace Context
-      ├── Pet Context
-      ├── Conversation Memory
-      ├── Long-Term Memory
-      ├── Knowledge Retrieval
-      ├── Tool Results
-      ├── Business Rules
-      └── System Instructions
-      │
-      ▼
-Context Optimizer
-      │
-      ▼
-Prompt Builder
-      │
-      ▼
-LLM
-```
+High-quality context has a greater impact on response quality than selecting a larger model.
 
 ---
 
 ## Context Sources
 
-### User Context
+The Context Engine may combine:
 
-Contains information related to the current authenticated user.
-
-Examples:
-
-- Preferred language
-- Workspace
-- User preferences
-- Subscription plan
-- Previous interactions
-
----
-
-### Workspace Context
-
-Includes information shared across the workspace.
-
-Examples:
-
-- Workspace settings
-- Team members
-- Feature availability
-- Organization policies
-
----
-
-### Pet Context
-
-Includes all information about the selected pet.
-
-Examples:
-
+- User profile
+- Pet profile
 - Species
 - Breed
 - Age
 - Weight
-- Medical history
+- Vaccination history
+- Medication history
 - Allergies
-- Vaccinations
-- Medications
-- Timeline
+- Uploaded medical records
+- Previous conversations
+- Retrieved veterinary references
 
 ---
 
-### Conversation Context
+## Context Assembly Flow
 
-Maintains the active dialogue.
-
-Includes:
-
-- Previous messages
-- Previous tool executions
-- Previous AI responses
-- Session metadata
-
----
-
-### Retrieved Knowledge
-
-Information obtained through the RAG pipeline.
-
-Examples:
-
-- Medical documents
-- Uploaded reports
-- Vaccination certificates
-- User notes
-- AI knowledge base
+```text
+User Request
+      │
+      ▼
+Retrieve User Context
+      │
+      ▼
+Retrieve Pet Context
+      │
+      ▼
+Retrieve Conversation Context
+      │
+      ▼
+Retrieve Knowledge Context
+      │
+      ▼
+Assemble Unified Context
+```
 
 ---
 
-### Tool Context
+## Context Design Principles
 
-Generated dynamically through tool execution.
-
-Examples:
-
-- Current reminder status
-- Latest vaccination
-- Search results
-- Timeline events
-
----
-
-## Context Optimization
-
-Before sending context to the model, the platform performs:
-
-- Duplicate removal
-- Token optimization
-- Relevance ranking
-- Priority ordering
-- Context compression
-- Metadata cleanup
+- Minimize irrelevant information
+- Preserve user privacy
+- Prioritize recent information
+- Respect token limits
+- Ensure explainability
 
 ---
 
@@ -1228,131 +1208,101 @@ Before sending context to the model, the platform performs:
 
 ## Overview
 
-Memory enables the AI to maintain continuity across conversations while preserving relevant historical information.
+The Memory Architecture enables personalized, context-aware interactions while respecting privacy and data governance.
 
-PetSync AI separates memory into multiple independent layers.
+Memory is categorized by lifespan and purpose.
 
 ---
 
-## Memory Layers
+## Memory Types
+
+### Short-Term Memory
+
+Stores information relevant to the current conversation.
+
+Examples:
+
+- Current topic
+- Active questions
+- Uploaded documents
+
+---
+
+### Long-Term Memory
+
+Stores persistent information.
+
+Examples:
+
+- Pet profile
+- Vaccination history
+- Medication history
+- User preferences
+
+---
+
+### Semantic Memory
+
+Stores embeddings for semantic retrieval.
+
+Examples:
+
+- Educational articles
+- Veterinary documents
+- Medical reports
+
+---
+
+## Memory Flow
 
 ```text
-Working Memory
-        │
-        ▼
-Conversation Memory
-        │
-        ▼
-Long-Term Memory
-        │
-        ▼
-Knowledge Memory
+Conversation
+      │
+      ▼
+Memory Manager
+      │
+ ┌────┼─────────────┐
+ │    │             │
+ ▼    ▼             ▼
+Short Long      Semantic
+Memory Memory     Memory
 ```
-
-Each layer has different responsibilities.
-
----
-
-## Working Memory
-
-Temporary memory used during a single request.
-
-Contains:
-
-- Current prompt
-- Tool outputs
-- Intermediate reasoning
-- Temporary variables
-
-Working memory is discarded after request completion.
-
----
-
-## Conversation Memory
-
-Maintains context throughout an active conversation.
-
-Examples:
-
-- Previous questions
-- Previous AI responses
-- Conversation state
-- Temporary preferences
-
-Conversation memory expires after configurable inactivity.
-
----
-
-## Long-Term Memory
-
-Stores persistent user-specific knowledge.
-
-Examples:
-
-- Preferred pet names
-- Communication preferences
-- Frequently accessed information
-- Personalized recommendations
-
-Long-term memory evolves over time.
-
----
-
-## Knowledge Memory
-
-Contains domain-specific information shared across users.
-
-Examples:
-
-- Veterinary guidelines
-- Care instructions
-- Medical references
-- Internal knowledge base
-
-Knowledge memory is maintained separately from personal memory.
-
----
-
-## Memory Lifecycle
-
-```text
-User Interaction
-        │
-        ▼
-Memory Evaluation
-        │
-        ▼
-Importance Scoring
-        │
-        ▼
-Store / Ignore
-        │
-        ▼
-Future Retrieval
-```
-
-Only valuable information becomes long-term memory.
 
 ---
 
 ## Memory Principles
 
-- Relevance
-- Privacy
-- Security
-- Versioning
-- Expiration
-- Explainability
+- Data minimization
+- Encryption
+- Privacy by design
+- User-controlled retention
+- Explainable retrieval
 
 ---
 
-# 15. RAG Architecture
+# 15. Evidence-Based Retrieval-Augmented Generation (RAG)
 
 ## Overview
 
-Retrieval-Augmented Generation (RAG) enables AI responses grounded in trusted platform knowledge instead of relying solely on model training.
+PetSync AI uses Retrieval-Augmented Generation (RAG) to ground AI responses in trusted knowledge rather than relying solely on model memory.
 
-The objective is to reduce hallucinations while increasing factual accuracy.
+This improves accuracy, transparency, and user trust.
+
+---
+
+## Evidence Sources
+
+Examples include:
+
+- Veterinary guidelines
+- Peer-reviewed journals
+- Educational veterinary resources
+- Internal knowledge base
+- User-uploaded medical records
+- Vaccination records
+- Medication records
+
+The knowledge base should be curated, versioned, and periodically reviewed to maintain quality.
 
 ---
 
@@ -1362,65 +1312,35 @@ The objective is to reduce hallucinations while increasing factual accuracy.
 User Question
       │
       ▼
-Query Rewriter
-      │
-      ▼
-Embedding Generator
+Embedding
       │
       ▼
 Vector Search
       │
       ▼
-Re-ranking
+Evidence Ranking
       │
       ▼
-Context Builder
+Context Assembly
       │
       ▼
-Prompt Builder
+LLM
       │
       ▼
-Large Language Model
-      │
-      ▼
-Grounded Response
+Educational Response
 ```
 
 ---
 
-## Retrieval Sources
+## Medical Guidance Policy
 
-The RAG engine may retrieve information from:
+RAG provides educational information only.
 
-- Uploaded documents
-- Medical reports
-- Vaccination records
-- Medication history
-- Timeline
-- AI knowledge base
-- Workspace documents
+Retrieved evidence shall not be interpreted as a definitive diagnosis or treatment recommendation.
 
----
+The AI may explain information in plain language, summarize records, or present general educational guidance.
 
-## Retrieval Strategy
-
-The retrieval engine prioritizes:
-
-- Semantic similarity
-- Metadata filtering
-- Freshness
-- Confidence score
-- User permissions
-
----
-
-## Benefits
-
-- Reduced hallucinations
-- Better personalization
-- Current information
-- Explainable responses
-- Lower prompt size
+For diagnosis, treatment decisions, medication recommendations, or emergency care, users should consult a licensed veterinarian.
 
 ---
 
@@ -1428,76 +1348,31 @@ The retrieval engine prioritizes:
 
 ## Overview
 
-Knowledge Management organizes every source of information available to the AI platform.
-
-Knowledge is treated as a first-class architectural component.
+The Knowledge Layer stores structured and unstructured information used by the AI platform.
 
 ---
 
-## Knowledge Sources
+## Knowledge Categories
 
-Structured Knowledge
-
-- Database
-- Business entities
-- Metadata
-
----
-
-Unstructured Knowledge
-
-- PDFs
-- Images
-- Notes
-- Documents
-- Reports
-
----
-
-External Knowledge
-
-Future integrations:
-
-- Veterinary APIs
-- Scientific publications
-- Government databases
-- Partner systems
-
----
-
-## Knowledge Pipeline
-
-```text
-Data Source
-      │
-      ▼
-Processing
-      │
-      ▼
-Extraction
-      │
-      ▼
-Embedding
-      │
-      ▼
-Knowledge Store
-      │
-      ▼
-Retrieval
-```
+- Veterinary educational content
+- Medical terminology
+- Preventive care guidance
+- Vaccination schedules
+- Nutrition information
+- Pet care best practices
+- Internal documentation
 
 ---
 
 ## Knowledge Governance
 
-Knowledge assets include:
+The knowledge base should support:
 
-- Version
-- Source
-- Owner
-- Permissions
-- Freshness
-- Confidence
+- Versioning
+- Source attribution
+- Review history
+- Quality assurance
+- Freshness monitoring
 
 ---
 
@@ -1505,13 +1380,21 @@ Knowledge assets include:
 
 ## Overview
 
-Embeddings transform text into numerical vectors that enable semantic understanding.
-
-The platform uses embeddings for search, retrieval, recommendations, and memory.
+Embeddings convert text into numerical representations for semantic search and retrieval.
 
 ---
 
-## Embedding Pipeline
+## Embedding Sources
+
+- Veterinary articles
+- Medical records
+- Conversation history
+- Uploaded PDFs
+- Educational documents
+
+---
+
+## Embedding Workflow
 
 ```text
 Document
@@ -1520,49 +1403,23 @@ Document
 Chunking
       │
       ▼
-Cleaning
-      │
-      ▼
 Embedding Model
       │
       ▼
 Vector Database
+      │
+      ▼
+Semantic Search
 ```
 
 ---
 
-## Embedding Sources
+## Design Principles
 
-Embeddings are generated for:
-
-- Documents
-- Medical records
-- AI conversations
-- Timeline events
-- Notes
-- Knowledge articles
-
----
-
-## Embedding Strategy
-
-The platform supports:
-
-- Batch generation
-- Incremental updates
-- Re-indexing
-- Background processing
-
----
-
-## Future Enhancements
-
-Future improvements include:
-
-- Hybrid search
-- Cross-modal embeddings
-- Image embeddings
-- Audio embeddings
+- Consistent chunk sizes
+- Metadata preservation
+- Source tracking
+- Efficient retrieval
 
 ---
 
@@ -1570,107 +1427,55 @@ Future improvements include:
 
 ## Overview
 
-Tool Calling enables AI models to interact with platform capabilities instead of relying solely on generated text.
-
-Tools provide real-time information and perform business actions securely.
+Tool Calling enables AI models to invoke trusted application services instead of generating unsupported information.
 
 ---
 
-## Tool Architecture
+## Example Tools
+
+- Retrieve Pet Profile
+- Retrieve Vaccination History
+- Retrieve Medication History
+- Retrieve Medical Records
+- Upload Document
+- Search Knowledge Base
+- Create Reminder
+- Update Pet Information
+
+---
+
+## Tool Calling Workflow
 
 ```text
 User Request
       │
       ▼
-AI Gateway
+AI Model
       │
       ▼
-Tool Planner
+Tool Selection
       │
       ▼
-Tool Registry
+Application Service
       │
       ▼
-Permission Validation
+Validated Result
       │
       ▼
-Tool Execution
-      │
-      ▼
-Result Formatter
-      │
-      ▼
-LLM Response
+AI Response
 ```
 
 ---
 
-## Tool Categories
+## Safety Rules
 
-Pet Tools
+Tools shall:
 
-- Get Pet Profile
-- Update Pet
-- Search Pets
-
----
-
-Medical Tools
-
-- Retrieve Medical History
-- Get Vaccinations
-- Check Medications
-
----
-
-Document Tools
-
-- Search Documents
-- Extract Report
-- OCR Status
-
----
-
-Reminder Tools
-
-- Create Reminder
-- Update Reminder
-- Complete Reminder
-
----
-
-Analytics Tools
-
-- Usage Statistics
-- Health Summary
-- Timeline Summary
-
----
-
-## Tool Registry
-
-Every tool records:
-
-- Name
-- Version
-- Input Schema
-- Output Schema
-- Permissions
-- Owner
-- Timeout
-- Retry Policy
-
----
-
-## Tool Security
-
-Before execution:
-
-- Authentication
-- Authorization
-- Parameter validation
-- Rate limiting
-- Audit logging
+- Validate permissions
+- Validate inputs
+- Return structured data
+- Log execution
+- Prevent unauthorized access
 
 ---
 
@@ -1678,201 +1483,131 @@ Before execution:
 
 ## Overview
 
-Function Calling provides a provider-independent abstraction over native model function-calling capabilities.
+Function Calling enables structured interaction between AI models and backend APIs.
 
-Business services never implement provider-specific function formats.
-
----
-
-## Function Architecture
-
-```text
-Business Request
-       │
-       ▼
-Unified Function Interface
-       │
-       ▼
-Provider Adapter
-       │
- ┌─────┼──────────────┐
- ▼     ▼              ▼
-OpenAI Claude      Gemini
-```
+Unlike free-text generation, function calls produce deterministic, machine-readable outputs.
 
 ---
 
-## Function Lifecycle
+## Example Functions
 
-```text
-LLM Decision
-      │
-      ▼
-Function Selection
-      │
-      ▼
-Validation
-      │
-      ▼
-Execution
-      │
-      ▼
-Response
-      │
-      ▼
-LLM Continuation
-```
+- getPetProfile()
+- getVaccinationHistory()
+- getMedicationHistory()
+- getMedicalRecords()
+- createReminder()
+- summarizeDocument()
 
 ---
 
 ## Benefits
 
-- Provider independence
-- Easier testing
-- Consistent execution
-- Simplified maintenance
+- Structured execution
+- Reliable automation
+- Reduced hallucinations
+- Better validation
+- Improved observability
 
 ---
 
-# 20. AI Agents
+# 20. Educational AI Agents
 
 ## Overview
 
-PetSync AI uses specialized AI Agents instead of a single monolithic assistant.
+PetSync AI uses specialized AI agents, each responsible for a specific domain of educational assistance.
 
-Each agent is responsible for a specific business capability.
-
----
-
-## Agent Architecture
-
-```text
-User
-      │
-      ▼
-Agent Registry
-      │
-      ▼
-Selected Agent
-      │
-      ▼
-Memory
-      │
-      ▼
-Tools
-      │
-      ▼
-Knowledge
-      │
-      ▼
-Provider
-```
+Agents collaborate to provide comprehensive responses while staying within defined medical safety boundaries.
 
 ---
 
-## Planned Agents
+## Initial Agent Catalog
 
-Health Agent
+### Health Education Agent
 
-Responsibilities:
-
-- Medical summaries
-- Health insights
-- Care recommendations
+Explains general pet health concepts using trusted educational references.
 
 ---
 
-Vaccination Agent
+### Medical Record Interpretation Agent
 
-Responsibilities:
-
-- Vaccination schedules
-- Booster planning
-- Certificate analysis
+Summarizes and explains veterinary medical records in plain language.
 
 ---
 
-Medication Agent
+### Laboratory Report Explanation Agent
 
-Responsibilities:
-
-- Medication reminders
-- Dosage explanations
-- Treatment history
+Helps users understand laboratory reports without providing diagnoses.
 
 ---
 
-Document Agent
+### Vaccination Intelligence Agent
 
-Responsibilities:
-
-- OCR
-- Structured extraction
-- Medical report analysis
+Tracks vaccination schedules and explains vaccine purpose and timing.
 
 ---
 
-Search Agent
+### Medication Information Agent
 
-Responsibilities:
+Explains the purpose and general information about medications.
 
-- Semantic search
-- Timeline search
-- Knowledge retrieval
+The agent shall not recommend starting, stopping, adjusting, or replacing medications.
 
 ---
 
-Reminder Agent
+### Nutrition Education Agent
 
-Responsibilities:
-
-- Reminder generation
-- Scheduling
-- Recurrence optimization
+Provides educational information about pet nutrition and feeding best practices.
 
 ---
 
-Support Agent
+### Preventive Care Agent
 
-Responsibilities:
-
-- Customer assistance
-- Product guidance
-- Troubleshooting
+Educates users on preventive healthcare topics such as wellness exams, parasite prevention, dental care, and routine screenings.
 
 ---
 
-Analytics Agent
+### Document Intelligence Agent
 
-Responsibilities:
-
-- AI usage analysis
-- Business insights
-- Health trends
+Extracts, summarizes, categorizes, and organizes uploaded veterinary documents.
 
 ---
 
-## Agent Components
+## Universal Medical Safety Policy
 
-Each agent owns:
+All educational AI agents shall comply with the following rules:
 
-- System Prompt
-- Prompt Templates
-- Available Tools
-- Memory Policies
-- Knowledge Sources
-- Permissions
-- Evaluation Metrics
-
----
+- Do not diagnose diseases or medical conditions.
+- Do not prescribe medications.
+- Do not recommend medication dosages or medication changes.
+- Do not replace professional veterinary advice.
+- Escalate suspected emergencies to immediate veterinary care.
+- Provide educational guidance supported by trusted evidence whenever available.
+- Include an appropriate context-aware disclaimer encouraging users to consult a licensed veterinarian for diagnosis, treatment decisions, medication recommendations, and emergency medical care.
 
 # 21. Agent Orchestration
 
 ## Overview
 
-Complex requests often require multiple specialized agents.
+Agent Orchestration coordinates multiple specialized AI agents to solve complex user requests.
 
-Agent Orchestration coordinates collaboration while maintaining clear responsibilities.
+Rather than relying on a single general-purpose AI model, PetSync AI decomposes requests into domain-specific tasks and delegates them to the most appropriate educational AI agents.
+
+This approach improves accuracy, maintainability, explainability, and scalability.
+
+---
+
+## Responsibilities
+
+The Agent Orchestrator is responsible for:
+
+- Request decomposition
+- Agent selection
+- Task sequencing
+- Context sharing
+- Result aggregation
+- Conflict resolution
+- Safety enforcement
+- Workflow coordination
 
 ---
 
@@ -1882,42 +1617,38 @@ Agent Orchestration coordinates collaboration while maintaining clear responsibi
 User Request
       │
       ▼
-Orchestrator
-      │
-      ├── Health Agent
-      ├── Document Agent
-      ├── Search Agent
-      └── Reminder Agent
+AI Gateway
       │
       ▼
-Response Aggregator
+Agent Orchestrator
       │
-      ▼
-Final Response
+ ┌────┼────────────────────────────────────┐
+ │    │          │          │              │
+ ▼    ▼          ▼          ▼              ▼
+Health  Medical  Nutrition Vaccination Document
+Agent   Records   Agent      Agent        Agent
+ │        │          │          │           │
+ └────────┴──────────┴──────────┴───────────┘
+                │
+                ▼
+       Response Aggregator
+                │
+                ▼
+      Medical Safety Engine
+                │
+                ▼
+         Final AI Response
 ```
 
 ---
 
-## Responsibilities
+## Design Principles
 
-The Orchestrator is responsible for:
-
-- Task decomposition
-- Agent selection
-- Parallel execution
-- Dependency management
-- Result aggregation
-- Error handling
-
----
-
-## Benefits
-
-- Higher accuracy
-- Better specialization
-- Improved scalability
-- Independent evolution
-- Lower prompt complexity
+- Agents remain independent.
+- Agents communicate through structured interfaces.
+- Shared context is centrally managed.
+- Agents never communicate directly with AI providers.
+- Safety policies apply uniformly to every agent.
 
 ---
 
@@ -1925,243 +1656,118 @@ The Orchestrator is responsible for:
 
 ## Overview
 
-The Multi-Agent System enables multiple AI agents to collaborate on complex workflows.
+PetSync AI follows a collaborative multi-agent architecture.
 
-Agents communicate through structured messages instead of shared prompts.
+Each agent specializes in a well-defined capability and contributes to a unified educational response.
 
 ---
 
-## Multi-Agent Architecture
+## Benefits
 
-```text
-                 Orchestrator
-                      │
-      ┌───────────────┼───────────────┐
-      │               │               │
-      ▼               ▼               ▼
-Health Agent   Document Agent   Search Agent
-      │               │               │
-      └───────────────┼───────────────┘
-                      ▼
-              Response Aggregator
-                      │
-                      ▼
-                Final Response
+- Better scalability
+- Improved maintainability
+- Higher response quality
+- Reduced hallucinations
+- Easier testing
+- Independent deployment
+- Capability expansion
+
+---
+
+## Agent Communication
+
+Agents exchange only structured information.
+
+Example:
+
+```json
+{
+  "agent": "Medication Information Agent",
+  "status": "SUCCESS",
+  "confidence": 0.94,
+  "result": {
+    "medication": "Amoxicillin",
+    "purpose": "Educational explanation only",
+    "medicalAdvice": false
+  }
+}
 ```
 
 ---
 
-## Communication Principles
+## Agent Rules
 
-Agents communicate using:
+Every agent shall:
 
-- Structured tasks
-- Standardized outputs
-- Shared context
-- Permission boundaries
+- Operate independently.
+- Respect medical safety policies.
+- Produce structured outputs.
+- Provide confidence scores.
+- Return supporting evidence when available.
+- Never diagnose or prescribe treatment.
 
-Each agent performs only its assigned responsibility.
+---
+
+# 23. Model Context Protocol (MCP)
+
+## Overview
+
+PetSync AI is designed to support the Model Context Protocol (MCP), enabling standardized communication between AI models and external tools.
+
+MCP simplifies integration with internal services, knowledge sources, and third-party systems.
+
+---
+
+## Planned MCP Capabilities
+
+- Medical document retrieval
+- Pet profile retrieval
+- Vaccination history
+- Medication history
+- Knowledge search
+- Calendar integration
+- Reminder services
+
+---
+
+## MCP Benefits
+
+- Standardized tool interfaces
+- Easier integrations
+- Provider independence
+- Future extensibility
+- Reduced custom integration code
+
+---
+
+# 24. Agent Development Kit (ADK)
+
+## Overview
+
+PetSync AI is architected to support an Agent Development Kit (ADK) for building, testing, and deploying specialized AI agents.
+
+---
+
+## ADK Objectives
+
+- Agent templates
+- Agent lifecycle management
+- Testing framework
+- Prompt versioning
+- Tool registration
+- Capability registration
+- Evaluation support
 
 ---
 
 ## Future Expansion
 
-Future orchestration capabilities include:
+Future versions may support:
 
-- Parallel execution
-- Hierarchical agents
-- Long-running workflows
-- Autonomous planning
-- Agent memory sharing
-
----
-
-# 23. MCP Integration (Model Context Protocol)
-
-## Overview
-
-PetSync AI is designed to support the **Model Context Protocol (MCP)** as the standard mechanism for connecting AI models to external systems and tools.
-
-MCP provides a vendor-neutral protocol for exposing data sources, services, and business capabilities to AI models in a secure and standardized manner.
-
----
-
-## MCP Architecture
-
-```text
-AI Agent
-     │
-     ▼
-MCP Client
-     │
-     ▼
-MCP Gateway
-     │
- ┌───┼───────────────┐
- ▼   ▼               ▼
-Filesystem PostgreSQL Google Drive
- │
- ▼
-Business Tools
-```
-
----
-
-## Planned MCP Servers
-
-Internal
-
-- PostgreSQL
-- Filesystem
-- Object Storage
-- Search Service
-- Knowledge Base
-
-External
-
-- Google Drive
-- Gmail
-- Calendar
-- GitHub
-- Slack
-- Stripe
-- Veterinary APIs
-
----
-
-## Benefits
-
-MCP enables:
-
-- Standardized integrations
-- Reduced vendor lock-in
-- Secure tool access
-- Simplified AI development
-- Future interoperability with emerging AI ecosystems
-
----
-
-**End of Part 2**
-
-**Next (Part 3)**
-
-- ADK Integration (Agent Development Kit)
-- AI Workflows
-- AI Safety & Guardrails
-- AI Security
-- AI Cost Management
-- AI Observability
-- AI Evaluation Framework
-- Human-in-the-Loop
-- AI Performance Optimization
-- Future AI Expansion
-- AI Architecture Summary
-
-# 24. ADK Integration (Agent Development Kit)
-
-## Overview
-
-PetSync AI is designed to support an **Agent Development Kit (ADK)** architecture, enabling AI agents to be developed, tested, deployed, versioned, and monitored independently.
-
-Rather than embedding agent logic throughout the application, every AI agent is treated as a modular software component with a well-defined lifecycle.
-
-This approach enables rapid development, standardized governance, and long-term maintainability.
-
----
-
-## ADK Architecture
-
-```text
-Business Request
-        │
-        ▼
-Agent Registry
-        │
-        ▼
-Agent Runtime
-        │
-        ▼
-Memory
-        │
-        ▼
-Tools
-        │
-        ▼
-Knowledge
-        │
-        ▼
-LLM
-        │
-        ▼
-Response
-```
-
----
-
-## Agent Lifecycle
-
-Every AI agent progresses through the following lifecycle:
-
-```text
-Design
-
-↓
-
-Develop
-
-↓
-
-Test
-
-↓
-
-Evaluate
-
-↓
-
-Deploy
-
-↓
-
-Monitor
-
-↓
-
-Improve
-
-↓
-
-Version
-```
-
----
-
-## Agent Metadata
-
-Each registered agent includes:
-
-- Agent Name
-- Description
-- Version
-- Owner
-- Supported Capabilities
-- Required Tools
-- Required Memory
-- Knowledge Sources
-- Supported Models
-- Safety Policies
-- Evaluation Metrics
-
----
-
-## Benefits
-
-- Modular development
-- Independent deployment
-- Easier testing
-- Version control
-- Improved governance
-- Future marketplace support
+- Marketplace agents
+- Third-party agents
+- Organization-specific agents
+- Custom workflow agents
 
 ---
 
@@ -2169,73 +1775,83 @@ Each registered agent includes:
 
 ## Overview
 
-Many AI tasks require multiple coordinated operations rather than a single model invocation.
+AI Workflows define repeatable execution patterns for common user requests.
 
-AI Workflows orchestrate these operations into repeatable, observable, and fault-tolerant execution pipelines.
-
----
-
-## Workflow Architecture
-
-```text
-User Request
-      │
-      ▼
-Workflow Engine
-      │
-      ├── Context Builder
-      ├── Memory Retrieval
-      ├── Knowledge Retrieval
-      ├── Tool Execution
-      ├── Agent Execution
-      ├── Validation
-      └── Response Generation
-      │
-      ▼
-Final Response
-```
+Workflows coordinate multiple AI components to produce reliable educational responses.
 
 ---
 
 ## Example Workflow
 
-### Medical Report Analysis
+### Medical Record Explanation
 
 ```text
-Upload Report
+User Upload
       │
       ▼
-OCR
+Document Intelligence Agent
       │
       ▼
-AI Extraction
+Medical Record Interpretation Agent
       │
       ▼
-Medical Classification
+Evidence Retrieval
       │
       ▼
-Timeline Update
+Response Validation
       │
       ▼
-Embedding Generation
+Medical Safety Validation
       │
       ▼
-Health Summary
-      │
-      ▼
-Notification
+Educational Response
 ```
 
 ---
 
-## Workflow Principles
+### Vaccination Workflow
 
-- Modular steps
-- Retry support
-- Parallel execution
-- Event-driven orchestration
-- Error recovery
-- Auditability
+```text
+User Request
+      │
+      ▼
+Retrieve Pet Profile
+      │
+      ▼
+Retrieve Vaccination History
+      │
+      ▼
+Vaccination Intelligence Agent
+      │
+      ▼
+Educational Guidance
+      │
+      ▼
+Disclaimer
+```
+
+---
+
+### Medication Information Workflow
+
+```text
+Medication Query
+      │
+      ▼
+Medication Information Agent
+      │
+      ▼
+Knowledge Retrieval
+      │
+      ▼
+Evidence Validation
+      │
+      ▼
+Educational Explanation
+      │
+      ▼
+Medication Safety Disclaimer
+```
 
 ---
 
@@ -2243,22 +1859,32 @@ Notification
 
 ## Overview
 
-AI Safety ensures that every interaction remains trustworthy, compliant, and aligned with platform policies.
+AI Safety is a foundational architectural component rather than a post-processing feature.
 
-Guardrails operate before, during, and after model execution.
+Safety controls are enforced throughout the request lifecycle.
 
 ---
 
-## Safety Architecture
+## Safety Objectives
+
+The platform shall:
+
+- Prevent harmful outputs
+- Reduce hallucinations
+- Prevent unsafe medical advice
+- Protect user privacy
+- Detect emergencies
+- Encourage veterinary consultation
+
+---
+
+## Safety Layers
 
 ```text
-User Request
-      │
-      ▼
 Input Validation
       │
       ▼
-Prompt Guardrails
+Prompt Safety
       │
       ▼
 Context Validation
@@ -2267,10 +1893,13 @@ Context Validation
 LLM
       │
       ▼
-Output Validation
+Response Validation
       │
       ▼
-Safety Policies
+Medical Safety Validation
+      │
+      ▼
+Disclaimer Injection
       │
       ▼
 Final Response
@@ -2278,169 +1907,262 @@ Final Response
 
 ---
 
-## Input Guardrails
+## Prohibited Behaviors
 
-The platform validates:
+PetSync AI shall never:
 
-- Prompt length
-- Unsupported content
-- Malicious instructions
-- Prompt injection attempts
-- Token limits
-
----
-
-## Context Guardrails
-
-Validation includes:
-
-- User permissions
-- Workspace isolation
-- Memory relevance
-- Knowledge access
-- Tool permissions
+- Diagnose diseases
+- Confirm medical conditions
+- Prescribe medications
+- Recommend medication dosages
+- Recommend medication changes
+- Interpret symptoms as definitive diagnoses
+- Replace veterinary consultation
+- Delay emergency care
 
 ---
 
-## Output Guardrails
+# 27. Medical Guidance Policy
 
-Every AI response is evaluated for:
+## Philosophy
 
-- Hallucinations
-- Harmful content
-- Sensitive information leakage
-- Toxicity
-- Policy violations
-- Formatting compliance
+PetSync AI is an educational AI assistant.
+
+Its role is to explain, organize, and educate—not diagnose or treat.
 
 ---
 
-## Responsible AI Principles
+## Allowed Capabilities
 
-PetSync AI follows these principles:
+The AI may:
 
-- Fairness
-- Transparency
-- Explainability
-- Privacy
-- Human oversight
-- Accountability
-
----
-
-# 27. AI Security
-
-## Overview
-
-AI introduces new attack surfaces beyond traditional software systems.
-
-Security must protect prompts, memory, tools, knowledge, providers, and generated outputs.
+- Explain veterinary terminology
+- Explain laboratory reports
+- Summarize veterinary records
+- Explain medications
+- Explain vaccinations
+- Explain nutrition
+- Explain preventive care
+- Organize medical history
 
 ---
 
-## AI Security Layers
+## Restricted Capabilities
+
+The AI shall not:
+
+- Diagnose diseases
+- Confirm illnesses
+- Prescribe medications
+- Recommend medication dosages
+- Recommend medication changes
+- Recommend surgery
+- Replace veterinary examinations
+- Replace emergency veterinary care
+
+---
+
+## Mandatory Veterinary Consultation
+
+Whenever users seek:
+
+- Diagnosis
+- Medication recommendations
+- Medication dosage
+- Treatment plans
+- Surgical advice
+- Emergency assistance
+
+The AI shall instruct users to consult a licensed veterinarian.
+
+---
+
+# 28. AI Medical Response Policy
+
+Every health-related AI response should follow a consistent structure.
+
+---
+
+## Standard Response Format
 
 ```text
-Authentication
-      │
-      ▼
-Authorization
-      │
-      ▼
-Prompt Protection
-      │
-      ▼
-Context Protection
-      │
-      ▼
-Tool Security
-      │
-      ▼
-Provider Security
-      │
-      ▼
-Output Validation
+Summary
+
+↓
+
+Educational Explanation
+
+↓
+
+Supporting Evidence
+
+↓
+
+Confidence Level
+
+↓
+
+When to Contact Your Veterinarian
+
+↓
+
+Medical Disclaimer
 ```
+
+---
+
+## Confidence Levels
+
+### High
+
+Supported by multiple trusted references and user context.
+
+---
+
+### Medium
+
+Supported by partial evidence.
+
+Additional veterinary review is recommended.
+
+---
+
+### Low
+
+Insufficient evidence.
+
+The AI should clearly communicate uncertainty and recommend consultation with a veterinarian.
+
+---
+
+## Required Medical Disclaimer
+
+Every health-related response shall conclude with:
+
+> **Educational Notice:** PetSync AI provides educational information only. It does not diagnose medical conditions, prescribe treatments, recommend medication changes, or replace professional veterinary advice. Always consult a licensed veterinarian for diagnosis, treatment decisions, medication recommendations, interpretation of clinical findings, and emergency medical care.
+
+---
+
+# 29. AI Security
+
+## Objectives
+
+AI Security protects the platform from misuse, prompt attacks, data leakage, and unsafe outputs.
 
 ---
 
 ## Security Controls
 
-### Prompt Security
-
-- Prompt Injection Detection
-- Prompt Sanitization
-- Prompt Length Limits
-- Instruction Validation
-
----
-
-### Memory Security
-
-- Encryption
-- Access Control
-- Data Isolation
-- Expiration Policies
-
----
-
-### Tool Security
-
-- Permission Checks
-- Schema Validation
+- Prompt Injection Protection
+- Output Validation
+- Tool Permission Validation
+- Input Sanitization
 - Rate Limiting
+- Secrets Protection
 - Audit Logging
+- Provider Authentication
 
 ---
 
-### Provider Security
+## Medical Safety Controls
 
-- Secure API Keys
-- Secret Management
-- Request Encryption
-- Provider Isolation
+The AI Security layer blocks responses that:
 
----
-
-### Data Protection
-
-Sensitive information is protected through:
-
-- Encryption at Rest
-- Encryption in Transit
-- Least Privilege Access
-- Secure Audit Logs
-- Workspace Isolation
+- Diagnose diseases
+- Recommend prescriptions
+- Suggest medication dosage
+- Recommend changing medications
+- Replace veterinary consultation
+- Encourage delaying emergency care
 
 ---
 
-# 28. AI Cost Management
+# 30. Emergency Detection Engine
 
 ## Overview
 
-AI infrastructure introduces variable operational costs.
+The Emergency Detection Engine identifies situations that may require immediate veterinary attention.
 
-The platform continuously monitors and optimizes AI usage without compromising response quality.
+When an emergency is suspected, the platform prioritizes user safety over continued AI interaction.
 
 ---
 
-## Cost Architecture
+## Emergency Indicators
+
+Examples include:
+
+- Difficulty breathing
+- Collapse
+- Uncontrolled bleeding
+- Seizures
+- Poison ingestion
+- Loss of consciousness
+- Severe trauma
+- Hit by vehicle
+- Persistent vomiting with lethargy
+- Inability to urinate
+
+---
+
+## Emergency Workflow
 
 ```text
-AI Request
+User Message
       │
       ▼
-Capability Registry
+Emergency Detection
       │
       ▼
-Provider Router
+High Risk?
       │
-      ▼
-Cost Optimizer
-      │
-      ▼
-Selected Model
+ ┌────┴─────┐
+ │          │
+Yes         No
+ │          │
+ ▼          ▼
+Emergency   Continue
+Response    Workflow
+ │
+ ▼
+Immediate Veterinary Recommendation
 ```
+
+---
+
+## Emergency Response Policy
+
+If an emergency is suspected:
+
+- Stop providing educational guidance that could delay treatment.
+- Clearly communicate that the situation may require urgent veterinary attention.
+- Recommend contacting a licensed veterinarian or the nearest emergency veterinary hospital immediately.
+- Do not provide instructions that could be interpreted as emergency medical treatment unless they are universally accepted first-aid measures and clearly identified as general educational information.
+
+# 31. AI Cost Management
+
+## Overview
+
+AI Cost Management ensures that PetSync AI delivers high-quality educational assistance while maintaining predictable and sustainable operational costs.
+
+Every AI request should balance:
+
+- Response quality
+- User experience
+- Provider cost
+- System latency
+- Resource utilization
+
+---
+
+## Cost Management Objectives
+
+The platform shall:
+
+- Optimize AI provider selection
+- Reduce unnecessary token usage
+- Monitor operational spending
+- Prevent excessive consumption
+- Support future budgeting and forecasting
 
 ---
 
@@ -2448,86 +2170,113 @@ Selected Model
 
 ### Intelligent Model Selection
 
-Smaller models handle:
+Different AI capabilities may use different models based on complexity.
 
-- Classification
-- Translation
-- Summarization
-- Metadata generation
+Example:
 
-Larger reasoning models handle:
+| Task | Recommended Model |
+|-------|-------------------|
+| General conversation | Small / Low-cost Model |
+| Medical record explanation | Large Reasoning Model |
+| Image interpretation | Vision Model |
+| Document summarization | Mid-tier Model |
 
-- Complex analysis
-- Medical summaries
-- Multi-step reasoning
-- Advanced planning
+---
+
+### Context Optimization
+
+The Context Engine should:
+
+- Remove irrelevant context
+- Deduplicate retrieved documents
+- Prioritize high-confidence evidence
+- Respect token budgets
 
 ---
 
 ### Prompt Optimization
 
-The platform minimizes:
+Prompt templates should:
 
-- Redundant context
-- Duplicate memory
-- Excessive instructions
-- Unnecessary tokens
-
----
-
-### Context Compression
-
-Older conversation history may be summarized before reuse.
+- Avoid unnecessary verbosity
+- Reuse standardized instructions
+- Minimize repeated context
+- Encourage concise structured outputs
 
 ---
 
 ### Response Caching
 
-Frequently requested information may be cached when appropriate.
+Where appropriate, frequently requested educational content may be cached.
+
+Examples include:
+
+- Breed information
+- Vaccination education
+- Nutrition guidance
+- Preventive care articles
+
+User-specific medical information shall never be shared across users.
 
 ---
 
-## AI Usage Metrics
+## Cost Metrics
 
-The platform records:
+The platform should monitor:
 
-- Provider
-- Model
-- Prompt Tokens
-- Completion Tokens
-- Total Tokens
-- Estimated Cost
-- Latency
-- Retry Count
+- Tokens per request
+- Cost per request
+- Daily provider spend
+- Monthly provider spend
+- Average response length
+- Cache hit ratio
+- Model utilization
 
 ---
 
-# 29. AI Observability
+# 32. AI Observability
 
 ## Overview
 
-Every AI interaction should be measurable, traceable, and debuggable.
+Observability provides visibility into the health, performance, reliability, and behavior of the AI platform.
 
-Observability enables engineering teams to understand AI behavior in production.
+Every AI request should be traceable from initiation to completion.
 
 ---
 
-## Observability Architecture
+## Observability Objectives
+
+The platform shall provide:
+
+- Distributed tracing
+- Request logging
+- Model performance metrics
+- Tool execution logs
+- Workflow visibility
+- Cost analytics
+- Error monitoring
+
+---
+
+## Observability Pipeline
 
 ```text
-AI Request
+User Request
       │
       ▼
-Logging
-      │
-      ▼
-Metrics
+AI Gateway
       │
       ▼
 Tracing
       │
       ▼
-Dashboards
+Metrics Collection
+      │
+      ▼
+Logs
+      │
+      ▼
+Monitoring Dashboard
       │
       ▼
 Alerts
@@ -2535,390 +2284,709 @@ Alerts
 
 ---
 
-## AI Logs
-
-Every request generates:
-
-- Request ID
-- Session ID
-- Agent ID
-- Capability
-- Provider
-- Model
-- Latency
-- Cost
-- Success Status
-
----
-
-## AI Metrics
+## Metrics
 
 Examples include:
 
-- Requests per Minute
-- Average Latency
-- Provider Usage
-- Model Usage
-- Token Consumption
-- Error Rate
-- Tool Success Rate
-- RAG Hit Rate
-- Cache Hit Rate
+- Request latency
+- Provider latency
+- Model response time
+- Success rate
+- Error rate
+- Tool execution duration
+- Retrieval latency
+- Token usage
+- Cost
+- User satisfaction
 
 ---
 
-## Distributed Tracing
+## Logging Principles
 
-Tracing captures:
+Logs should include:
 
-- Gateway
-- Memory Retrieval
-- RAG
-- Tool Calls
-- Provider Calls
-- Validation
-- Streaming
+- Request ID
+- Correlation ID
+- Provider
+- Model
+- Capability
+- Confidence score
+- Safety validation result
+- Emergency detection result
+- Processing duration
+
+Sensitive user information shall be masked or excluded.
 
 ---
 
-# 30. AI Evaluation Framework
+# 33. AI Evaluation Framework
 
 ## Overview
 
-AI quality should be measured continuously rather than assumed.
+The Evaluation Framework measures AI quality using objective, repeatable criteria.
 
-The evaluation framework provides objective metrics for every AI capability.
+Evaluation occurs continuously during development and production.
 
 ---
 
-## Evaluation Categories
+## Evaluation Dimensions
 
-### Response Quality
-
-Measures:
+The platform should evaluate:
 
 - Accuracy
 - Relevance
 - Completeness
-- Consistency
+- Explainability
+- Safety
+- Hallucination rate
+- Evidence quality
+- User satisfaction
 
 ---
 
-### Safety
+## Medical Evaluation Criteria
 
-Measures:
+Health-related responses should also be evaluated for:
 
-- Hallucination Rate
-- Toxicity
-- Policy Compliance
-- Sensitive Data Exposure
-
----
-
-### Operational Performance
-
-Measures:
-
-- Latency
-- Throughput
-- Availability
-- Retry Rate
+- Appropriate educational framing
+- Correct disclaimer inclusion
+- Appropriate recommendation to consult a veterinarian
+- Absence of diagnosis
+- Absence of treatment recommendations
+- Evidence quality
+- Confidence calibration
 
 ---
 
-### Business Performance
+## Evaluation Methods
 
-Measures:
+Examples include:
 
-- User Satisfaction
-- Task Completion
-- Workflow Success
-- Adoption Rate
-
----
-
-## Evaluation Pipeline
-
-```text
-AI Response
-      │
-      ▼
-Automatic Evaluation
-      │
-      ▼
-Human Review
-      │
-      ▼
-Quality Score
-      │
-      ▼
-Continuous Improvement
-```
+- Human review
+- Automated testing
+- Prompt regression testing
+- Golden dataset comparison
+- A/B testing
+- User feedback analysis
 
 ---
 
-# 31. Human-in-the-Loop
+# 34. Human-in-the-Loop
 
 ## Overview
 
-Certain AI decisions require human validation before execution.
+Human oversight is an important safeguard for continuous improvement.
 
-Human oversight improves trust, safety, and regulatory compliance.
-
----
-
-## HITL Workflow
-
-```text
-AI Recommendation
-        │
-        ▼
-Confidence Evaluation
-        │
-        ├───────────────┐
-        │               │
-        ▼               ▼
-High Confidence   Low Confidence
-        │               │
-        ▼               ▼
-Auto Execute   Human Review
-```
+Although Version 1.0 does not include veterinarian-reviewed responses, the architecture supports future human review workflows.
 
 ---
 
 ## Human Review Scenarios
 
-Examples include:
+Future human review may be applied to:
 
-- Medical recommendations
-- Financial actions
-- Critical reminders
-- Sensitive document analysis
-- Administrative actions
-
----
-
-## Benefits
-
-- Improved accuracy
-- Better accountability
-- Reduced risk
-- Higher user trust
+- Knowledge base updates
+- Prompt changes
+- Safety policy revisions
+- Evaluation datasets
+- AI response audits
 
 ---
 
-# 32. AI Performance Optimization
+## Future Veterinary Review
+
+Future versions may introduce:
+
+- Veterinarian-reviewed educational content
+- Clinical advisory board
+- Knowledge approval workflow
+- Medical content versioning
+
+Version 1.0 does not claim veterinarian review or approval.
+
+---
+
+# 35. AI Performance Optimization
 
 ## Objectives
 
-The AI platform should deliver:
+The platform should provide:
 
-- Low latency
+- Fast response times
+- Efficient resource utilization
 - High throughput
-- Efficient token usage
-- Scalable execution
+- Stable latency
 - Reliable streaming
 
 ---
 
-## Optimization Techniques
+## Optimization Strategies
 
-### Provider Routing
+Examples include:
 
-Automatically select:
-
-- Lowest latency
-- Lowest cost
-- Highest availability
-- Best capability match
+- Response streaming
+- Parallel retrieval
+- Parallel tool execution
+- Intelligent provider routing
+- Context optimization
+- Response caching
+- Connection pooling
 
 ---
 
-### Parallel Processing
+## Performance Metrics
 
-Independent operations execute simultaneously.
+Monitor:
+
+- End-to-end latency
+- Time to first token
+- Tokens per second
+- Tool execution latency
+- Retrieval latency
+- Cache efficiency
+
+---
+
+# 36. AI Explainability
+
+## Overview
+
+Users should understand why an educational response was generated.
+
+Explainability improves transparency and trust.
+
+---
+
+## Explainability Components
+
+Responses should indicate:
+
+- Educational summary
+- Supporting evidence
+- Confidence level
+- Why the information is relevant
+- Recommendation to consult a veterinarian when appropriate
+
+---
+
+## Internal Explainability
+
+The platform should retain metadata such as:
+
+- Provider used
+- Model used
+- Retrieved sources
+- Tools executed
+- Safety policies applied
+- Confidence calculation
+
+---
+
+# 37. Hallucination Mitigation
+
+## Overview
+
+Hallucinations are responses that are unsupported, fabricated, or misleading.
+
+Reducing hallucinations is a core architectural objective.
+
+---
+
+## Mitigation Strategies
+
+The platform should:
+
+- Prefer retrieved evidence
+- Validate structured outputs
+- Use trusted knowledge sources
+- Reject unsupported claims
+- Encourage uncertainty when evidence is insufficient
+
+---
+
+## Medical Safety Rules
+
+If evidence is insufficient:
+
+The AI should state that it does not have enough reliable information.
+
+It shall never invent:
+
+- Diagnoses
+- Medication dosages
+- Treatment plans
+- Laboratory values
+- Veterinary recommendations
+
+Instead, users should be encouraged to consult a licensed veterinarian.
+
+---
+
+# 38. Knowledge Freshness Validation
+
+## Overview
+
+Educational content should remain current and traceable.
+
+The Knowledge Layer should support lifecycle management.
+
+---
+
+## Freshness Strategy
+
+Knowledge should include:
+
+- Source
+- Version
+- Publication date
+- Review date
+- Expiration policy
+
+---
+
+## Review Process
+
+Content should periodically undergo:
+
+- Quality review
+- Source validation
+- Version updates
+- Outdated content detection
+
+---
+
+# 39. Response Validation
+
+## Overview
+
+Before any response is delivered, the platform performs validation checks.
+
+---
+
+## Validation Pipeline
+
+```text
+LLM Response
+      │
+      ▼
+Schema Validation
+      │
+      ▼
+Evidence Validation
+      │
+      ▼
+Medical Safety Validation
+      │
+      ▼
+Confidence Validation
+      │
+      ▼
+Disclaimer Validation
+      │
+      ▼
+Response Approved
+```
+
+---
+
+## Validation Rules
+
+Every health-related response should:
+
+- Include educational framing
+- Avoid diagnosis
+- Avoid treatment recommendations
+- Avoid medication dosage recommendations
+- Include appropriate medical disclaimer
+- Recommend veterinary consultation when applicable
+- Include confidence level where supported
+
+Responses failing validation shall be regenerated, modified, or blocked.
+
+---
+
+# 40. AI Governance
+
+## Overview
+
+AI Governance defines the policies, standards, and operational controls governing the AI platform.
+
+---
+
+## Governance Objectives
+
+The platform should ensure:
+
+- Responsible AI
+- Safe AI
+- Explainable AI
+- Auditable AI
+- Secure AI
+- Maintainable AI
+
+---
+
+## Governance Principles
+
+### Accountability
+
+Engineering teams are responsible for AI quality, safety, and compliance.
+
+---
+
+### Transparency
+
+Users should understand the educational nature of responses and the limitations of the platform.
+
+---
+
+### Privacy
+
+User data should only be used for authorized purposes and protected according to security policies.
+
+---
+
+### Medical Responsibility
+
+PetSync AI is an educational platform.
+
+Clinical responsibility remains with licensed veterinarians.
+
+The AI platform shall not present itself as a substitute for professional veterinary advice.
+
+---
+
+## Standard Medical Notice
+
+Every health-related interaction should conclude with a context-aware notice similar to:
+
+> **Educational Notice:** PetSync AI provides educational information only. It does not diagnose medical conditions, prescribe treatments, recommend medication changes, or replace professional veterinary advice. Always consult a licensed veterinarian for diagnosis, treatment decisions, medication recommendations, interpretation of clinical findings, and emergency medical care.
+
+This requirement is enforced as part of the AI response validation process and applies consistently across all supported AI providers and educational agents.
+
+# 41. Future AI Expansion
+
+## Overview
+
+The AI Platform is designed using a modular architecture that allows new capabilities to be introduced without major architectural changes.
+
+Version 1.0 focuses on providing trustworthy educational assistance for pet owners.
+
+Future versions may introduce additional AI capabilities while preserving the platform's safety, explainability, and governance principles.
+
+---
+
+## Planned AI Enhancements
+
+Potential future capabilities include:
+
+- Voice-based AI Assistant
+- Multilingual AI Support
+- Real-time Image Understanding
+- Video Analysis
+- Wearable Device Integration
+- Smart Health Monitoring
+- Personalized Wellness Insights
+- AI-powered Preventive Care Recommendations
+- AI-powered Appointment Preparation
+- Veterinary Clinic Integrations
+
+All future capabilities must comply with the Medical Guidance Policy and AI Governance Framework.
+
+---
+
+## Future AI Capabilities
+
+Examples include:
+
+### Predictive Health Analytics
+
+Identify long-term wellness trends using historical pet data.
 
 Examples:
 
-- Memory retrieval
-- Knowledge retrieval
-- Tool execution
+- Weight trends
+- Vaccination compliance
+- Wellness reminders
+- Preventive care recommendations
+
+Predictions should be educational only and must not be presented as medical diagnoses.
 
 ---
 
-### Streaming
+### Advanced Document Intelligence
 
-Responses are streamed immediately rather than waiting for complete generation.
+Future versions may support:
 
----
-
-### Intelligent Caching
-
-The platform may cache:
-
-- Embeddings
-- Knowledge retrieval
-- AI summaries
-- Prompt templates
+- OCR improvements
+- Handwritten veterinary notes
+- Medical timeline generation
+- Automatic categorization
+- Cross-document summarization
 
 ---
-
-### Background Processing
-
-Long-running AI operations execute asynchronously.
-
-Examples:
-
-- OCR
-- Embedding generation
-- Knowledge indexing
-- Large document analysis
-
----
-
-# 33. Future AI Expansion
-
-The AI platform is intentionally designed for continuous evolution.
-
----
-
-## Planned AI Capabilities
 
 ### Multimodal AI
 
-Support for:
+Future support may include:
 
-- Images
-- Audio
-- Video
-- Documents
+- Image understanding
+- Audio transcription
 - Voice conversations
-
----
-
-### Voice AI
-
-Future capabilities include:
-
-- Speech Recognition
-- Voice Assistants
-- Real-Time Conversations
-
----
-
-### Vision AI
-
-Support for:
-
-- Medical image understanding
-- Pet image analysis
 - Document understanding
-- OCR improvements
+- Combined multimodal reasoning
+
+Image interpretation should remain educational and must not replace professional veterinary examination.
 
 ---
 
-### Autonomous Agents
+### Personalized AI
 
-Future agents may perform:
+Future personalization may include:
 
-- Multi-step planning
-- Long-running workflows
-- Independent task execution
-- Cross-system coordination
+- Learning user preferences
+- Personalized educational content
+- Pet-specific reminders
+- Breed-specific educational resources
+- Age-based preventive guidance
 
----
-
-### AI Marketplace
-
-Future architecture supports:
-
-- Third-party agents
-- Community tools
-- Plugin ecosystem
-- Custom workflows
+Personalization must respect user privacy and data governance policies.
 
 ---
 
-### Enterprise Integrations
+# 42. Future Clinical Review Layer
 
-Planned integrations include:
+## Overview
 
-- Veterinary Information Systems
-- Insurance Platforms
-- Electronic Medical Records (EMR)
-- CRM Platforms
-- ERP Platforms
-- IoT Devices
-- Wearable Sensors
+Version 1.0 does not claim veterinarian-reviewed content.
+
+However, the platform architecture is designed to support future clinical review workflows.
 
 ---
 
-### Continuous Learning
+## Future Clinical Review Objectives
 
-Future improvements include:
+Potential future enhancements include:
 
-- Feedback-driven optimization
-- Prompt evolution
-- Workflow optimization
-- Automated evaluations
-- Adaptive routing
-
----
-
-# 34. AI Architecture Summary
-
-PetSync AI implements an enterprise-grade, provider-independent Artificial Intelligence platform designed for long-term scalability, maintainability, and innovation.
-
-The architecture separates responsibilities across dedicated layers, including:
-
-- AI Gateway
-- Provider Router
-- Model Registry
-- Capability Registry
-- Prompt Management
-- Context Engineering
-- Memory Management
-- Retrieval-Augmented Generation (RAG)
-- Knowledge Management
-- Tool Calling
-- Function Calling
-- Multi-Agent Orchestration
-- AI Workflows
-- Safety & Guardrails
-- Cost Management
-- Observability
-- Evaluation Framework
-
-By abstracting AI providers behind standardized interfaces, the platform avoids vendor lock-in while supporting commercial models, open-source models, and future AI ecosystems.
-
-The architecture is designed to support modern AI standards, including:
-
-- Multi-provider AI
-- Agentic AI
-- Model Context Protocol (MCP)
-- Agent Development Kit (ADK)
-- Retrieval-Augmented Generation (RAG)
-- Human-in-the-Loop (HITL)
-- Streaming AI
-- Enterprise AI Governance
-
-This document serves as the foundational blueprint for every AI capability within PetSync AI and enables the platform to evolve alongside advancements in artificial intelligence without requiring significant architectural redesign.
+- Veterinarian-reviewed educational articles
+- Clinical Advisory Board
+- Medical content approval workflows
+- Regional veterinary guideline support
+- Knowledge base certification
+- Clinical quality review process
 
 ---
 
-# Related Documents
+## Clinical Review Workflow
 
+```text
+Knowledge Author
+        │
+        ▼
+Medical Content Draft
+        │
+        ▼
+Clinical Review
+        │
+        ▼
+Medical Approval
+        │
+        ▼
+Versioning
+        │
+        ▼
+Knowledge Publication
+        │
+        ▼
+AI Knowledge Base
+```
+
+---
+
+## Version 1.0 Position
+
+Version 1.0 shall not claim:
+
+- Veterinarian-approved AI
+- Clinical diagnosis
+- Prescription recommendations
+- Medical treatment recommendations
+- Certified medical decision support
+
+Instead, the platform provides evidence-based educational information intended to support conversations between pet owners and licensed veterinarians.
+
+---
+
+# 43. Related Architecture Documents
+
+The AI Platform Architecture should be read together with the following project documentation:
+
+- PROJECT_FOUNDATION.md
+- PRODUCT_REQUIREMENTS.md
 - SYSTEM_DESIGN.md
 - DATABASE.md
 - API.md
 - SECURITY.md
-- AUTHENTICATION.md
-- STORAGE.md
-- PERFORMANCE.md
 - DEPLOYMENT.md
+- OBSERVABILITY.md
+- TESTING.md
+- CODING_STANDARDS.md
+
+Together these documents define the complete technical architecture for PetSync AI Version 1.0.
 
 ---
 
-**Document Status:** Approved
+# 44. Version History
 
-**End of Document**
+| Version | Date | Description |
+|----------|------|-------------|
+| 1.0 | July 2026 | Initial enterprise AI Platform Architecture |
+
+---
+
+# 45. Key Architectural Decisions
+
+The following architectural decisions guide the implementation of PetSync AI.
+
+---
+
+## AI Platform
+
+- Layered AI architecture
+- Modular design
+- Provider-independent architecture
+- Multi-provider support
+- Capability-driven routing
+- Enterprise AI Gateway
+
+---
+
+## Intelligence Layer
+
+- Prompt Engineering
+- Context Engineering
+- Memory Management
+- Evidence-Based RAG
+- Tool Calling
+- Function Calling
+- Multi-Agent System
+
+---
+
+## Safety
+
+- AI Safety by Design
+- Medical Safety Validation
+- Response Validation
+- Emergency Detection
+- Confidence Scoring
+- Context-aware Medical Disclaimers
+
+---
+
+## Governance
+
+- Responsible AI
+- Explainable AI
+- AI Auditability
+- Cost Governance
+- AI Evaluation Framework
+- Human-in-the-Loop Ready
+
+---
+
+## Medical Positioning
+
+PetSync AI is designed as an Educational AI Pet Health Copilot.
+
+The platform is intended to:
+
+- Explain veterinary information
+- Organize pet health records
+- Improve user understanding
+- Support informed discussions with veterinarians
+
+The platform is **not** intended to:
+
+- Diagnose diseases
+- Prescribe medications
+- Recommend medication dosages
+- Replace veterinary examinations
+- Replace emergency veterinary care
+- Replace professional clinical judgment
+
+Medical responsibility remains with licensed veterinarians.
+
+---
+
+# 46. AI Architecture Summary
+
+## Platform Vision
+
+PetSync AI is an enterprise-grade AI platform built to provide trustworthy, explainable, and evidence-based educational assistance for pet owners.
+
+Rather than functioning as a diagnostic system, the platform helps users understand veterinary information, organize medical records, and prepare for conversations with veterinary professionals.
+
+---
+
+## Core Capabilities
+
+The platform combines:
+
+- AI Gateway
+- Multi-Provider AI
+- Provider Router
+- Model Registry
+- Capability Registry
+- Prompt Engineering
+- Context Engineering
+- Memory Architecture
+- Evidence-Based RAG
+- Knowledge Management
+- Embeddings
+- Tool Calling
+- Function Calling
+- Multi-Agent Architecture
+- AI Safety
+- AI Governance
+- AI Observability
+- AI Evaluation
+
+---
+
+## Architectural Principles
+
+Every AI capability should be:
+
+- Educational
+- Explainable
+- Evidence-Based
+- Secure
+- Safe
+- Observable
+- Cost Efficient
+- Provider Independent
+- Extensible
+- Human-Centered
+
+---
+
+## Standard Medical Disclaimer
+
+All health-related AI responses generated by PetSync AI must include an appropriate context-aware medical disclaimer.
+
+**Recommended Standard Disclaimer**
+
+> **Educational Notice:** PetSync AI provides educational information only. It does not diagnose medical conditions, prescribe treatments, recommend medication changes, or replace professional veterinary advice. Always consult a licensed veterinarian for diagnosis, treatment decisions, medication recommendations, interpretation of clinical findings, and emergency medical care.
+
+This disclaimer is an architectural requirement and shall be enforced through the AI Response Validation process for every applicable health-related interaction.
+
+---
+
+## Conclusion
+
+The architecture defined in this document establishes a scalable, secure, explainable, and provider-independent AI platform for PetSync AI Version 1.0.
+
+By combining modular AI services, evidence-based retrieval, intelligent orchestration, comprehensive safety controls, and responsible governance, the platform is designed to deliver high-quality educational experiences while maintaining clear boundaries around clinical decision-making.
+
+The architecture also provides a strong foundation for future enhancements, including veterinarian-reviewed knowledge, advanced multimodal AI, and expanded educational capabilities, without requiring significant redesign.
