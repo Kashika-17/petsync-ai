@@ -985,11 +985,27 @@ Security events are logged for:
 
 ## Overview
 
-Artificial Intelligence introduces security risks beyond traditional applications.
+AI Security protects PetSync AI from misuse, malicious inputs, unsafe outputs, unauthorized tool access, data leakage, and model-specific attacks.
 
-PetSync AI implements dedicated AI security controls to protect models, prompts, tools, memory, providers, and generated outputs.
+The objective is to ensure that every AI interaction is secure, trustworthy, explainable, and aligned with the platform's educational purpose.
 
-AI security is enforced independently from API security.
+AI Security operates across the complete AI request lifecycle, from user input validation to final response delivery.
+
+---
+
+## AI Security Objectives
+
+The AI platform shall:
+
+- Protect against malicious prompts
+- Prevent prompt injection attacks
+- Prevent jailbreak attempts
+- Prevent sensitive data leakage
+- Secure AI tool execution
+- Protect user privacy
+- Prevent unauthorized AI capabilities
+- Block unsafe medical responses
+- Maintain complete auditability
 
 ---
 
@@ -1005,7 +1021,10 @@ Authentication
 Authorization
       │
       ▼
-Prompt Validation
+Input Validation
+      │
+      ▼
+Prompt Injection Detection
       │
       ▼
 Context Validation
@@ -1014,102 +1033,502 @@ Context Validation
 AI Gateway
       │
       ▼
-Tool Security
+LLM
       │
       ▼
-Provider
+Response Validation
       │
       ▼
-Output Validation
+Medical Safety Validation
       │
       ▼
-Audit Logging
+Disclaimer Validation
+      │
+      ▼
+Final Response
 ```
 
 ---
 
-## AI Security Objectives
+## AI Threat Model
 
 The platform protects against:
 
-- Prompt Injection
-- Jailbreak Attempts
-- Data Leakage
-- Tool Abuse
-- Model Abuse
-- Excessive Token Consumption
-- Unauthorized Memory Access
-- Sensitive Information Exposure
+### Prompt Injection
+
+Attempts to manipulate system instructions.
+
+Examples:
+
+- Ignore previous instructions
+- Reveal system prompts
+- Act as a veterinarian
+- Bypass safety rules
+
+Mitigation:
+
+- Prompt isolation
+- Instruction hierarchy
+- Prompt sanitization
+- Prompt validation
 
 ---
 
-## AI Protection Layers
+### Jailbreak Attempts
 
-### Prompt Protection
+Attempts to bypass AI safety restrictions.
 
-Protects against:
+Examples:
 
-- Prompt Injection
-- Prompt Leakage
-- Hidden Instructions
-- Malicious Prompts
+- Role-playing attacks
+- Multi-turn manipulation
+- Hidden instruction attacks
 
----
+Mitigation:
 
-### Context Protection
-
-Protects:
-
-- Memory
-- Retrieved Documents
-- User Context
-- Workspace Isolation
+- Safety classifiers
+- Output validation
+- Policy enforcement
+- Continuous monitoring
 
 ---
 
-### Tool Protection
+### Sensitive Data Leakage
 
-Every tool call requires:
+Prevent disclosure of:
+
+- API keys
+- Internal prompts
+- System instructions
+- User data
+- Hidden metadata
+
+Mitigation:
+
+- Output filtering
+- Secret masking
+- Permission validation
+- Least-privilege access
+
+---
+
+### Tool Abuse
+
+Prevent unauthorized execution of AI tools.
+
+Mitigation:
 
 - Authentication
 - Authorization
-- Parameter Validation
-- Audit Logging
+- Input validation
+- Rate limiting
+- Audit logging
 
 ---
 
-### Provider Protection
+# AI Medical Safety Guardrails
 
-The AI Gateway isolates providers from business logic.
+## Overview
 
-Providers never receive unnecessary information.
+PetSync AI is an Educational AI Pet Health Copilot.
 
----
+The AI shall provide educational guidance only.
 
-### Output Protection
+Medical decision-making remains the responsibility of licensed veterinarians.
 
-Generated responses are validated before delivery.
-
-Validation includes:
-
-- Harmful Content
-- Sensitive Data
-- Hallucination Detection
-- Formatting Compliance
+Medical Safety Guardrails ensure the platform never behaves like a diagnostic or prescribing system.
 
 ---
 
-## AI Security Principles
+## Allowed AI Behaviors
 
-- Secure by default
-- Least privilege
-- Explicit permissions
-- Continuous validation
-- Complete observability
+The AI may:
+
+- Explain veterinary terminology
+- Explain laboratory reports
+- Summarize veterinary records
+- Organize medical history
+- Explain medications in general terms
+- Explain vaccinations
+- Explain preventive healthcare
+- Explain nutrition concepts
+- Provide evidence-based educational information
+- Help users prepare questions for their veterinarian
 
 ---
 
-# 13. Prompt Injection Protection
+## Restricted AI Behaviors
+
+The AI shall never:
+
+- Diagnose diseases
+- Confirm medical conditions
+- Prescribe medications
+- Recommend medication dosages
+- Recommend starting medications
+- Recommend stopping medications
+- Recommend changing medications
+- Recommend surgery
+- Replace veterinary consultation
+- Replace emergency veterinary services
+- Claim certainty where evidence is insufficient
+
+These restrictions are mandatory and enforced by the AI Response Validation Engine.
+
+---
+
+## Medical Safety Validation
+
+Every health-related AI response must undergo validation before being returned to the user.
+
+Validation checks include:
+
+- Diagnostic language detection
+- Prescription detection
+- Medication dosage detection
+- Treatment recommendation detection
+- Surgery recommendation detection
+- Confidence assessment
+- Disclaimer verification
+- Emergency escalation verification
+
+Responses that violate safety policies shall be:
+
+- Regenerated
+- Sanitized
+- Blocked
+- Escalated for future review (where applicable)
+
+---
+
+## Emergency Safety Policy
+
+If the AI detects language indicating a possible emergency, it shall prioritize user safety.
+
+Examples include:
+
+- Difficulty breathing
+- Collapse
+- Uncontrolled bleeding
+- Seizures
+- Poison ingestion
+- Hit by vehicle
+- Loss of consciousness
+- Severe trauma
+- Persistent vomiting with lethargy
+- Inability to urinate
+
+The AI shall:
+
+- Stop providing speculative educational guidance that could delay care.
+- Advise the user to contact a licensed veterinarian or emergency veterinary hospital immediately.
+- Avoid providing treatment instructions beyond general educational first-aid information where appropriate.
+
+---
+
+## Mandatory Medical Disclaimer
+
+Every health-related AI response shall conclude with a context-aware medical disclaimer.
+
+Standard disclaimer:
+
+> **Educational Notice:** PetSync AI provides educational information only. It does not diagnose medical conditions, prescribe treatments, recommend medication changes, or replace professional veterinary advice. Always consult a licensed veterinarian for diagnosis, treatment decisions, medication recommendations, interpretation of clinical findings, and emergency medical care.
+
+---
+
+## Response Validation Rules
+
+A response shall be approved only if it:
+
+- Uses educational language
+- Avoids definitive medical conclusions
+- Includes supporting evidence where available
+- Includes an appropriate confidence level
+- Includes the required medical disclaimer
+- Recommends veterinary consultation when appropriate
+
+Otherwise, the response must be regenerated or blocked.
+
+---
+
+## AI Security Logging
+
+The platform shall log AI security events including:
+
+- Prompt injection attempts
+- Jailbreak attempts
+- Blocked prompts
+- Blocked responses
+- Medical safety violations
+- Emergency detections
+- Tool authorization failures
+- AI provider failures
+
+Logs shall support security monitoring, incident response, and future compliance requirements.
+
+---
+
+## Security Principles
+
+The AI Security layer follows these principles:
+
+- Security by Design
+- Zero Trust
+- Least Privilege
+- Defense in Depth
+- Responsible AI
+- Privacy by Design
+- Medical Safety by Default
+- Explainability
+- Auditability
+
+
+# 13. Responsible AI Policy
+
+## Overview
+
+Responsible AI defines the principles, governance, and operational controls that ensure PetSync AI behaves safely, transparently, ethically, and consistently with its intended purpose.
+
+PetSync AI is designed as an **Educational AI Pet Health Copilot**.
+
+The platform assists users in understanding veterinary information but does not replace licensed veterinary professionals.
+
+Responsible AI policies apply to every AI capability, regardless of the underlying model provider.
+
+---
+
+## Responsible AI Objectives
+
+The platform shall:
+
+- Promote trustworthy AI interactions
+- Provide educational guidance
+- Prevent harmful medical advice
+- Protect user privacy
+- Encourage informed veterinary consultations
+- Maintain transparency
+- Support explainability
+- Minimize hallucinations
+- Ensure accountability
+
+---
+
+# Educational AI Principle
+
+PetSync AI exists to educate, organize, and explain.
+
+The platform is designed to:
+
+- Explain veterinary terminology
+- Simplify laboratory reports
+- Summarize veterinary records
+- Organize pet medical history
+- Explain medications in general terms
+- Explain vaccinations
+- Explain nutrition concepts
+- Explain preventive healthcare
+
+The platform is **not** intended to:
+
+- Diagnose diseases
+- Replace veterinary examinations
+- Prescribe medications
+- Recommend medication dosages
+- Recommend changing medications
+- Replace emergency veterinary care
+
+---
+
+# Human-Centered AI
+
+Artificial Intelligence should augment human expertise rather than replace it.
+
+Licensed veterinarians remain responsible for:
+
+- Diagnosis
+- Treatment planning
+- Medication decisions
+- Surgical recommendations
+- Emergency care
+- Clinical interpretation
+
+The AI should encourage collaboration between pet owners and veterinary professionals.
+
+---
+
+# Transparency
+
+Users should always understand:
+
+- They are interacting with AI.
+- The AI provides educational information.
+- Responses may have limitations.
+- Clinical decisions require professional veterinary judgment.
+
+The platform shall avoid presenting educational information as definitive medical advice.
+
+---
+
+# Explainability
+
+Where appropriate, AI responses should include:
+
+- Educational summary
+- Supporting evidence
+- Confidence level
+- Relevant references
+- Recommendation to consult a veterinarian
+
+Explainability improves user trust and informed decision-making.
+
+---
+
+# Confidence Communication
+
+Health-related responses should communicate confidence levels.
+
+### High Confidence
+
+Supported by multiple trusted educational references and consistent contextual information.
+
+---
+
+### Medium Confidence
+
+Supported by partial evidence.
+
+Additional review by a licensed veterinarian is recommended.
+
+---
+
+### Low Confidence
+
+Limited or insufficient evidence.
+
+The AI should clearly communicate uncertainty and recommend veterinary consultation.
+
+---
+
+# Evidence-Based Responses
+
+Whenever possible, AI responses should be grounded using:
+
+- Trusted veterinary references
+- Internal knowledge base
+- User-uploaded veterinary records
+- Vaccination history
+- Medication history
+
+The AI should avoid unsupported claims.
+
+---
+
+# Hallucination Prevention
+
+If reliable evidence is unavailable, the AI shall:
+
+- Acknowledge uncertainty
+- Avoid speculation
+- Avoid fabricated information
+- Recommend consulting a licensed veterinarian
+
+The AI shall never invent:
+
+- Diagnoses
+- Medication dosages
+- Laboratory values
+- Treatment plans
+- Clinical recommendations
+
+---
+
+# Fairness
+
+The AI should provide consistent educational guidance regardless of:
+
+- Pet breed
+- Pet age
+- Pet size
+- User location
+- AI provider
+
+Provider changes shall not materially alter medical safety policies.
+
+---
+
+# Privacy
+
+Responsible AI shall respect:
+
+- User privacy
+- Data minimization
+- Secure storage
+- Consent
+- Confidentiality
+
+User information shall never be used beyond authorized purposes.
+
+---
+
+# Accountability
+
+Engineering teams remain accountable for:
+
+- Prompt quality
+- Knowledge quality
+- Safety validation
+- Model evaluation
+- Monitoring
+- Continuous improvement
+
+AI-generated responses remain subject to platform governance regardless of the underlying AI provider.
+
+---
+
+# Medical Responsibility
+
+PetSync AI is not a veterinary medical device.
+
+Medical responsibility remains with licensed veterinarians.
+
+The AI shall never present itself as:
+
+- A veterinarian
+- A diagnostic system
+- A prescription system
+- A treatment planning system
+- A replacement for professional veterinary advice
+
+---
+
+# Responsible AI Principles
+
+Every AI capability shall follow these principles:
+
+- Human-Centered
+- Educational First
+- Evidence-Based
+- Transparent
+- Explainable
+- Safe
+- Secure
+- Privacy-Preserving
+- Fair
+- Accountable
+
+---
+
+# Standard Medical Disclaimer
+
+Every health-related AI response shall conclude with an appropriate context-aware disclaimer.
+
+**Recommended Standard Disclaimer**
+
+> **Educational Notice:** PetSync AI provides educational information only. It does not diagnose medical conditions, prescribe treatments, recommend medication changes, or replace professional veterinary advice. Always consult a licensed veterinarian for diagnosis, treatment decisions, medication recommendations, interpretation of clinical findings, and emergency medical care.
+
+This disclaimer is mandatory for all health-related interactions and is enforced through the AI Response Validation process.
+
+# 14. Prompt Injection Protection
 
 ## Overview
 
